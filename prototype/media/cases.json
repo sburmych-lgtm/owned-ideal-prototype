@@ -1,0 +1,50 @@
+[
+  {
+    "id": "curls",
+    "title": "Форма і гладкість",
+    "desc": "Текстура до/після · полірування",
+    "before": "media/ba/web/curls-before.jpg",
+    "after": "media/ba/web/curls-after.jpg",
+    "thumb": "media/ba/web/curls-after.jpg"
+  },
+  {
+    "id": "color",
+    "title": "Складний колір",
+    "desc": "Балаяж / вихід у світлий",
+    "before": "media/ba/web/color-before.jpg",
+    "after": "media/ba/web/color-after.jpg",
+    "thumb": "media/ba/web/color-after.jpg"
+  },
+  {
+    "id": "blonde",
+    "title": "Блонд і тонування",
+    "desc": "Рівний тон без ламкості",
+    "before": "media/ba/web/blonde-before.jpg",
+    "after": "media/ba/web/blonde-after.jpg",
+    "thumb": "media/ba/web/blonde-after.jpg"
+  },
+  {
+    "id": "airtouch",
+    "title": "Airtouch",
+    "desc": "Мʼяке багатотональне освітлення",
+    "before": "media/ba/web/airtouch-before.jpg",
+    "after": "media/ba/web/airtouch-after.jpg",
+    "thumb": "media/ba/web/airtouch-after.jpg"
+  },
+  {
+    "id": "grey",
+    "title": "Grey blending",
+    "desc": "Сивина як акцент",
+    "before": "media/ba/web/grey-before.jpg",
+    "after": "media/ba/web/grey-after.jpg",
+    "thumb": "media/ba/web/grey-after.jpg"
+  },
+  {
+    "id": "length",
+    "title": "Довжина і щільність",
+    "desc": "Нарощення / відновлення",
+    "before": "media/ba/web/length-before.jpg",
+    "after": "media/ba/web/length-after.jpg",
+    "thumb": "media/ba/web/length-after.jpg"
+  }
+]

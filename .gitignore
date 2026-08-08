@@ -5,3 +5,19 @@ node_modules/
 .env
 .env.*
 _audit_extracts/
+# keep only optimized BA web assets in git
+prototype/media/ba/*
+!prototype/media/ba/web/
+!prototype/media/ba/web/**
+# originals at media root (use media/web/* in pages)
+prototype/media/award-trust.jpg
+prototype/media/curly-result.jpg
+prototype/media/founder-halyna.jpg
+prototype/media/hair-process.jpg
+prototype/media/hero-hair.jpg
+prototype/media/nails.jpg
+prototype/media/salon-logo.jpg
+prototype/media/space-interior.jpg
+prototype/media/team-curly.jpg
+prototype/media/logo-primary.svg
+

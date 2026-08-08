@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="OWNED — салон експертизи волосся у Львові. Кучері, сивина, складний колір. Запис онлайн." />
+  <meta name="description" content="OWNED — салон експертизи волосся у Львові (Safe Town). Кучері, сивина, складний колір. Запис онлайн." />
+  <meta name="theme-color" content="#16181A" />
   <title>OWNED — експертиза волосся · Львів</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,31 +17,29 @@
   <header class="site-header" data-header>
     <div class="site-header__inner">
       <a class="logo" href="#top" aria-label="OWNED — нагору">
-        <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-          <path class="logo__stroke" d="M8 34 V14 H20 C28 14 32 18 32 24 C32 30 28 34 20 34 H8 Z M38 14 V34" fill="none" stroke="currentColor" stroke-width="2.2"/>
-        </svg>
+        <img class="logo__mark" src="media/monogram.svg" width="28" height="28" alt="" />
         <span class="logo__word">OWNED</span>
       </a>
 
       <nav class="nav-desktop" aria-label="Основна">
-        <a href="#services">Напрями</a>
         <a href="#results">Результати</a>
+        <a href="#services">Послуги</a>
         <a href="#space">Простір</a>
-        <a href="#reviews">Відгуки</a>
+        <a href="#founder">Галина</a>
         <a class="btn btn--small btn--solid" href="#booking">Записатися</a>
       </nav>
 
       <div class="nav-mobile-actions">
         <a class="btn btn--small btn--ghost" href="#booking">Запис</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-nav-toggle>
-          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
           <span class="visually-hidden">Меню</span>
         </button>
       </div>
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <a href="#results">Результати</a>
-      <a href="#services">Напрями</a>
+      <a href="#services">Послуги</a>
       <a href="#space">Простір</a>
       <a href="#founder">Засновниця</a>
       <a href="#booking">Записатися</a>
@@ -48,207 +47,234 @@
   </header>
 
   <main id="main">
-    <!-- HERO -->
+    <!-- HERO: brand lives inside the photograph -->
     <section class="hero" id="top" data-hero>
       <div class="hero__media" aria-hidden="true">
-        <div class="hero__gradient"></div>
-        <div class="hero__grain"></div>
-        <div class="hero__photo"></div>
+        <img class="hero__photo" src="media/web/hero-hair.jpg" alt="" width="1200" height="1600" fetchpriority="high" />
+        <div class="hero__veil"></div>
       </div>
 
       <div class="hero__content">
-        <p class="eyebrow eyebrow--neon" data-reveal>
+        <p class="eyebrow eyebrow--on-dark" data-reveal>
           <span class="neon-line" aria-hidden="true"></span>
-          Салон краси · Львів · Safe Town
+          Львів · Safe Town
         </p>
-        <p class="hero__brand" data-neon-reveal>OWNED</p>
         <h1 class="hero__title" data-reveal>
-          Кучеряве волосся,<br />
-          сивина і складний колір.
+          Кучері, сивина<br />і складний колір.
         </h1>
         <p class="hero__lead" data-reveal>
-          Простір у Safe Town, де форма, колір і відновлення роблять без шаблонних рішень.
-          Рейтинг Google 4.9 — звірити перед релізом.
+          Там, де ти стаєш кращою. Спочатку слухаємо волосся,<br class="hide-mobile" />
+          потім ріжемо, фарбуємо й відновлюємо.
         </p>
         <div class="hero__cta" data-reveal>
           <a class="btn btn--solid btn--lg" href="#booking" data-hero-cta>Записатися</a>
-          <a class="btn btn--text" href="#results">Дивитись роботи →</a>
+          <a class="btn btn--ghost-light btn--lg" href="#results">Дивитись роботи</a>
         </div>
       </div>
-
-      <p class="hero__scroll-hint" aria-hidden="true">Результати нижче</p>
     </section>
 
-    <!-- TRUST -->
-    <section class="trust" aria-label="Довіра">
-      <div class="trust__grid">
-        <div class="trust__item">
-          <span class="trust__num">4.9</span>
-          <span class="trust__label">рейтинг Google*</span>
+    <!-- PROOF METRICS -->
+    <section class="metrics" aria-label="Довіра">
+      <div class="metrics__grid">
+        <div class="metrics__item">
+          <span class="metrics__num">4.9</span>
+          <span class="metrics__label">рейтинг Google</span>
         </div>
-        <div class="trust__item">
-          <span class="trust__num">480+</span>
-          <span class="trust__label">відгуків*</span>
+        <div class="metrics__item">
+          <span class="metrics__num">480+</span>
+          <span class="metrics__label">відгуків</span>
         </div>
-        <div class="trust__item">
-          <span class="trust__num">Safe Town</span>
-          <span class="trust__label">Львів</span>
+        <div class="metrics__item">
+          <span class="metrics__num">0&nbsp;₴</span>
+          <span class="metrics__label">первинна консультація</span>
         </div>
-        <div class="trust__item">
-          <span class="trust__num">0 ₴</span>
-          <span class="trust__label">первинна консультація</span>
+        <div class="metrics__item metrics__item--wide">
+          <span class="metrics__num metrics__num--sm">Safe Town</span>
+          <span class="metrics__label">Львів · щодня 10:00–20:00</span>
         </div>
       </div>
-      <p class="trust__note">*Цифри орієнтовні з аудитів — підтвердити в Google Business Profile перед публікацією.</p>
     </section>
 
-    <!-- RESULTS -->
-    <section class="section section--bone" id="results">
+    <!-- RESULTS / BA -->
+    <section class="section section--paper" id="results">
       <div class="section__head">
-        <p class="eyebrow">Результат</p>
-        <h2>Роботи, які видно</h2>
-        <p class="section__lead">П’ять–шість сигнатурних трансформацій на головній. Повна галерея — окремим маршрутом у продакшені.</p>
+        <p class="eyebrow">Результати</p>
+        <h2>Роботи, які видно<br />без ретуші</h2>
+        <p class="section__lead">Перетягніть лінію. Кожен кейс — реальна зйомка в салоні OWNED.</p>
       </div>
 
       <div class="ba" data-ba>
         <div class="ba__stage" data-ba-stage>
           <div class="ba__layer ba__layer--after" data-ba-after></div>
           <div class="ba__layer ba__layer--before" data-ba-before></div>
-          <div class="ba__handle" data-ba-handle style="--pos: 50%">
+          <div class="ba__handle" data-ba-handle style="--pos: 52%">
             <span class="ba__knob" aria-hidden="true"></span>
           </div>
           <span class="ba__tag ba__tag--before">До</span>
           <span class="ba__tag ba__tag--after">Після</span>
-          <input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Порівняти до і після" data-ba-range />
+          <input class="ba__range" type="range" min="0" max="100" value="52" aria-label="Порівняти до і після" data-ba-range />
         </div>
+
         <div class="ba__meta">
-          <p class="ba__case-eyebrow eyebrow">Кейс <span data-ba-index>01</span> / 06</p>
-          <h3 data-ba-title>Кучерява форма</h3>
-          <p class="ba__desc" data-ba-desc>Стрижка під текстуру · орієнтовно 1 візит</p>
-          <p class="ba__disclaimer">Інтерфейс прототипу. Підставте реальні парні зйомки OWNED — не позиціонуйте демо як клієнтський кейс.</p>
-          <div class="ba__thumbs" role="tablist" aria-label="Кейси">
-            <button type="button" class="ba__thumb is-active" role="tab" aria-selected="true" data-case="0">01</button>
-            <button type="button" class="ba__thumb" role="tab" aria-selected="false" data-case="1">02</button>
-            <button type="button" class="ba__thumb" role="tab" aria-selected="false" data-case="2">03</button>
-            <button type="button" class="ba__thumb" role="tab" aria-selected="false" data-case="3">04</button>
-            <button type="button" class="ba__thumb" role="tab" aria-selected="false" data-case="4">05</button>
-            <button type="button" class="ba__thumb" role="tab" aria-selected="false" data-case="5">06</button>
-          </div>
+          <p class="ba__case-eyebrow eyebrow">Кейс <span data-ba-index>01</span> / <span data-ba-total>06</span></p>
+          <h3 data-ba-title>Форма і гладкість</h3>
+          <p class="ba__desc" data-ba-desc>Текстура до/після · полірування</p>
+          <p class="ba__legal">Індивідуальний результат. Фото знято в OWNED.</p>
+
+          <div class="ba__thumbs" role="tablist" aria-label="Кейси" data-ba-thumbs></div>
+
           <a class="btn btn--text" href="#booking">Хочу схожий результат →</a>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="section section--paper" id="services">
-      <div class="section__head">
-        <p class="eyebrow">Напрями</p>
-        <h2>Спершу волосся.<br />Далі — увесь образ.</h2>
-        <p class="section__lead">Acquisition wedge — складна робота з волоссям. Інші послуги доступні в тому ж просторі.</p>
-      </div>
-
-      <div class="services">
-        <article class="service service--primary">
-          <p class="eyebrow">01 · Фокус</p>
-          <h3>Волосся</h3>
-          <p>Кучері, grey blending, airtouch / balayage, вихід із чорного, Tokyo recovery, нарощення.</p>
-          <p class="service__price"><span class="mono">від 700 ₴</span></p>
-          <a class="btn btn--text" href="#booking">Обрати волосся →</a>
-        </article>
-        <article class="service">
-          <p class="eyebrow">02</p>
-          <h3>Нігті</h3>
-          <p>Манікюр і педикюр із покриттям та зміцненням.</p>
-          <p class="service__price"><span class="mono">від 500 ₴</span></p>
-          <a class="btn btn--text" href="#booking">Записати на нігті →</a>
-        </article>
-        <article class="service">
-          <p class="eyebrow">03</p>
-          <h3>Брови і вії</h3>
-          <p>Ламінування, фарбування, довготривала укладка брів.</p>
-          <p class="service__price"><span class="mono">від 300 ₴</span></p>
-          <a class="btn btn--text" href="#booking">Записати на брови →</a>
-        </article>
-        <article class="service">
-          <p class="eyebrow">04</p>
-          <h3>Образ</h3>
-          <p>Макіяж під подію — у тій же логіці акуратність і природність.</p>
-          <p class="service__price"><span class="mono">від 900 ₴</span></p>
-          <a class="btn btn--text" href="#booking">Записати на макіяж →</a>
-        </article>
-      </div>
-      <p class="section__foot">Повний прайс з групами — маршрут <span class="mono">/prices</span> у наступній ітерації. Суми «від» — орієнтир формату.</p>
+    <!-- STRIP: more proof photography -->
+    <section class="filmstrip" aria-label="Атмосфера робіт">
+      <figure class="filmstrip__item">
+        <img src="media/web/hero-hair.jpg" alt="Результат кольору в салоні OWNED біля вивіски" width="800" height="1000" loading="lazy" />
+      </figure>
+      <figure class="filmstrip__item">
+        <img src="media/web/curly-result.jpg" alt="Кучеряве волосся після роботи майстра" width="800" height="1000" loading="lazy" />
+      </figure>
+      <figure class="filmstrip__item">
+        <img src="media/web/nails.jpg" alt="Манікюр у OWNED" width="800" height="1000" loading="lazy" />
+      </figure>
+      <figure class="filmstrip__item filmstrip__item--dark">
+        <img src="media/web/award-trust.jpg" alt="Нагорода та довіра салону" width="800" height="1000" loading="lazy" />
+      </figure>
     </section>
 
-    <!-- VISIT -->
+    <!-- SERVICES -->
+    <section class="section section--bone" id="services">
+      <div class="section__head">
+        <p class="eyebrow">Послуги</p>
+        <h2>Спершу волосся.<br />Далі — увесь образ.</h2>
+        <p class="section__lead">Acquisition wedge — складна робота з волоссям. Нігті, брови й макіяж у тому ж просторі.</p>
+      </div>
+
+      <div class="ledger" role="list">
+        <article class="ledger__row" role="listitem">
+          <span class="ledger__num" aria-hidden="true">01</span>
+          <div class="ledger__body">
+            <h3>Волосся</h3>
+            <p>Кучері, grey blending, airtouch / balayage, вихід із чорного, Tokyo recovery, нарощення.</p>
+          </div>
+          <p class="ledger__price mono">від 700 ₴</p>
+          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
+        </article>
+        <article class="ledger__row" role="listitem">
+          <span class="ledger__num" aria-hidden="true">02</span>
+          <div class="ledger__body">
+            <h3>Нігті</h3>
+            <p>Манікюр і педикюр із покриттям та зміцненням.</p>
+          </div>
+          <p class="ledger__price mono">від 500 ₴</p>
+          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
+        </article>
+        <article class="ledger__row" role="listitem">
+          <span class="ledger__num" aria-hidden="true">03</span>
+          <div class="ledger__body">
+            <h3>Брови і вії</h3>
+            <p>Ламінування, фарбування, довготривала укладка брів.</p>
+          </div>
+          <p class="ledger__price mono">від 300 ₴</p>
+          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
+        </article>
+        <article class="ledger__row" role="listitem">
+          <span class="ledger__num" aria-hidden="true">04</span>
+          <div class="ledger__body">
+            <h3>Макіяж</h3>
+            <p>Образ під подію — акуратність і природність у тій же логіці.</p>
+          </div>
+          <p class="ledger__price mono">від 900 ₴</p>
+          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- VISIT STEPS -->
     <section class="section section--ink" id="visit">
       <div class="section__head section__head--inv">
-        <p class="eyebrow eyebrow--neon">Візит</p>
-        <h2>Як усе відбувається</h2>
-        <p class="section__lead">Чотири кроки. Без завдатку на первинній консультації з нарощення.</p>
+        <p class="eyebrow eyebrow--on-dark">Візит</p>
+        <h2>Чотири кроки<br />до результату</h2>
       </div>
       <ol class="steps">
-        <li class="steps__item">
-          <span class="steps__num mono">01</span>
+        <li>
+          <span class="steps__num">01</span>
           <h3>Заявка</h3>
           <p>Залишаєте номер тут або пишете в Instagram.</p>
         </li>
-        <li class="steps__item">
-          <span class="steps__num mono">02</span>
+        <li>
+          <span class="steps__num">02</span>
           <h3>Консультація</h3>
           <p>Дивимось стан волосся й варіанти. Безкоштовно.</p>
         </li>
-        <li class="steps__item">
-          <span class="steps__num mono">03</span>
+        <li>
+          <span class="steps__num">03</span>
           <h3>Візит</h3>
-          <p>Погоджуємо результат до початку роботи.</p>
+          <p>Погоджуємо очікуваний результат до початку роботи.</p>
         </li>
-        <li class="steps__item">
-          <span class="steps__num mono">04</span>
+        <li>
+          <span class="steps__num">04</span>
           <h3>Догляд</h3>
           <p>Підбираємо домашню систему, щоб форма трималась.</p>
         </li>
       </ol>
     </section>
 
-    <!-- SPACE -->
-    <section class="section section--bone" id="space">
+    <!-- SPACE + NEON SIGNATURE -->
+    <section class="section section--paper" id="space">
       <div class="space">
         <div class="space__copy">
           <p class="eyebrow">Простір</p>
           <h2>OWNED у Safe Town</h2>
-          <p>Одна секція замість трьох. Тут важливі світло, дзеркала й неонова вивіска — матеріальний знак бренду, з якого виводиться акцент сайту.</p>
+          <p>Світло дзеркал, дерево, мох і неонова вивіска — матеріальний знак бренду. Саме звідси на сайті береться акцент: неон як світло в кімнаті, не як «ефект».</p>
+          <p class="space__slogan">«Там, де ти — головний пріоритет»</p>
           <a class="btn btn--text" href="#location">Як дістатися →</a>
         </div>
-        <div class="space__bento" aria-hidden="true">
-          <div class="space__tile space__tile--lg"></div>
-          <div class="space__tile"></div>
-          <div class="space__tile"></div>
+
+        <div class="space__media">
+          <figure class="space__frame space__frame--photo">
+            <img src="media/web/space-interior.jpg" alt="Інтер’єр салону OWNED: дзеркала з підсвіткою" width="1200" height="900" loading="lazy" />
+          </figure>
+          <figure class="space__frame space__frame--neon">
+            <video
+              class="space__video"
+              src="media/logo-ambient.mp4"
+              poster="media/web/salon-logo.jpg"
+              muted
+              playsinline
+              loop
+              autoplay
+              preload="metadata"
+              aria-label="Неонова вивіска OWNED у салоні"
+            ></video>
+            <figcaption class="space__cap mono">Neon · living brand mark</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <!-- REVIEWS -->
-    <section class="section section--paper" id="reviews">
+    <section class="section section--bone" id="reviews">
       <div class="section__head">
         <p class="eyebrow">Відгуки</p>
         <h2>Голоси клієнток</h2>
-        <p class="section__lead">Джерело — Google. У продакшені підключити свіжі цитати з реальної стрічки.</p>
       </div>
       <div class="reviews">
         <figure class="review">
           <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
-          <blockquote>«Нарешті підстригли кучері так, щоб вони жили своїм життям, а не «вирівнювались».»</blockquote>
+          <blockquote>«Нарешті підстригли кучері так, щоб вони жили своїм життям.»</blockquote>
           <figcaption><span class="mono">Олена</span> · стрижка · Google</figcaption>
         </figure>
         <figure class="review">
           <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
-          <blockquote>«Сивину не замальовували шапкою — зробили м’який grey blending. Виглядає дорого й спокійно.»</blockquote>
+          <blockquote>«Сивину не замальовували шапкою — зробили м’який grey blending.»</blockquote>
           <figcaption><span class="mono">Марія</span> · колір · Google</figcaption>
         </figure>
         <figure class="review">
           <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
-          <blockquote>«Пояснили план на кілька візитів і чесно сказали, чого не варто очікувати за один раз.»</blockquote>
+          <blockquote>«Пояснили план на кілька візитів і чесно сказали, чого не варто чекати за один раз.»</blockquote>
           <figcaption><span class="mono">Ірина</span> · складний колір · Google</figcaption>
         </figure>
       </div>
@@ -257,9 +283,11 @@
     <!-- FOUNDER -->
     <section class="section section--ink" id="founder">
       <div class="founder">
-        <div class="founder__portrait" role="img" aria-label="Портретне місце для фото засновниці"></div>
+        <figure class="founder__portrait">
+          <img src="media/web/founder-halyna.jpg" alt="Галина — засновниця салону OWNED" width="900" height="1200" loading="lazy" />
+        </figure>
         <div class="founder__copy">
-          <p class="eyebrow eyebrow--neon">Засновниця</p>
+          <p class="eyebrow eyebrow--on-dark">Засновниця</p>
           <h2>Галина</h2>
           <p class="founder__thesis">Краса без шаблону: слухаємо волосся, а не тренд сезону.</p>
           <ul class="founder__points">
@@ -267,28 +295,32 @@
             <li>Колір як система візитів, не «сюрприз»</li>
             <li>Чесна консультація до ножиць і фарби</li>
           </ul>
+          <a class="btn btn--ghost-light" href="#booking">Записатися до команди</a>
         </div>
       </div>
     </section>
 
-    <!-- LOCATION + BOOKING -->
-    <section class="section section--bone contact" id="location">
+    <!-- CONTACT + BOOKING -->
+    <section class="section section--paper contact" id="location">
       <div class="contact__grid">
         <div class="contact__info">
           <p class="eyebrow">Локація</p>
           <h2>Safe Town, Львів</h2>
           <p class="mono contact__line">Пн–Нд · 10:00–20:00</p>
-          <p>Уточніть точну адресу й корпус у повідомленні — адміністратор надішле орієнтир і парковку.</p>
-          <p>
-            <a class="btn btn--text" href="tel:+380000000000">Зателефонувати →</a><br />
-            <a class="btn btn--text" href="https://instagram.com/" rel="noopener" target="_blank">Написати в Instagram →</a>
-          </p>
+          <p>Напишіть адміністратору — надішлемо точний корпус, парковку й орієнтир по Safe Town.</p>
+          <div class="contact__links">
+            <a class="btn btn--text" href="https://instagram.com/" rel="noopener" target="_blank">Instagram →</a>
+            <a class="btn btn--text" href="tel:+380000000000">Подзвонити →</a>
+          </div>
+          <figure class="contact__side-photo">
+            <img src="media/web/team-curly.jpg" alt="Команда OWNED за роботою з кучерявим волоссям" width="900" height="700" loading="lazy" />
+          </figure>
         </div>
 
         <div class="contact__form-wrap" id="booking" data-booking>
           <p class="eyebrow">Запис</p>
           <h2>Залишити заявку</h2>
-          <p class="section__lead">Остаточний час підтверджує адміністратор. Це прототип — заявка не відправляється на сервер.</p>
+          <p class="section__lead">Час підтвердить адміністратор у відповіді.</p>
           <form class="form" data-form novalidate>
             <label>
               <span>Ім’я</span>
@@ -326,21 +358,21 @@
   <footer class="footer">
     <div class="footer__grid">
       <div>
-        <p class="logo__word footer__logo">OWNED</p>
-        <p>Експертиза волосся · Львів</p>
+        <p class="footer__word">OWNED</p>
+        <p>Експертиза волосся · Львів · Safe Town</p>
       </div>
       <div>
         <p class="eyebrow">Навігація</p>
         <a href="#results">Результати</a>
-        <a href="#services">Напрями</a>
+        <a href="#services">Послуги</a>
         <a href="#booking">Запис</a>
       </div>
       <div>
-        <p class="eyebrow">Прототип</p>
-        <p>High-fidelity UI для рев’ю. Без CRM. Mobile / desktop композиції з 900px.</p>
+        <p class="eyebrow">Прототип v2</p>
+        <p>Реальні фото салону, засновниці та кейсів «до/після». Заявка поки демо.</p>
       </div>
     </div>
-    <p class="footer__legal mono">© OWNED · 2026 · Ideal prototype</p>
+    <p class="footer__legal mono">© OWNED · 2026</p>
   </footer>
 
   <div class="dock" data-dock hidden>

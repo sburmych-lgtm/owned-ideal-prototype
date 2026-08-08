@@ -19,7 +19,8 @@
     });
   }
 
-  /* Reveal */
+  /* Reveal + neon brand light */
+  const brand = document.querySelector("[data-neon-reveal]");
   if (!reduced) {
     const els = document.querySelectorAll("[data-reveal]");
     const io = new IntersectionObserver(
@@ -31,9 +32,14 @@
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.18 }
     );
     els.forEach((el) => io.observe(el));
+
+    if (brand) {
+      window.setTimeout(() => brand.classList.add("is-lit"), 420);
+      window.setTimeout(() => brand.classList.remove("is-lit"), 1800);
+    }
   } else {
     document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-in"));
   }
@@ -52,10 +58,9 @@
       body.classList.remove("has-dock");
       return;
     }
-    // Show only after primary hero CTA has left the viewport
     const heroGone = heroCta
       ? heroCta.getBoundingClientRect().bottom < 8
-      : window.scrollY > window.innerHeight * 0.7;
+      : window.scrollY > window.innerHeight * 0.65;
     const bookingVisible = booking
       ? (() => {
           const r = booking.getBoundingClientRect();
@@ -73,43 +78,72 @@
   window.addEventListener("resize", syncDock);
   mqDesktop.addEventListener?.("change", syncDock);
 
-  /* Before / After */
-  const cases = [
+  /* Pause ambient video when offscreen / reduced */
+  const video = document.querySelector(".space__video");
+  if (video) {
+    if (reduced) {
+      video.removeAttribute("autoplay");
+      video.pause();
+    } else {
+      const vio = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      vio.observe(video);
+    }
+  }
+
+  /* Before / After from cases.json */
+  const fallbackCases = [
     {
-      title: "Кучерява форма",
-      desc: "Стрижка під текстуру · орієнтовно 1 візит",
-    },
-    {
-      title: "Grey blending",
-      desc: "Інтеграція сивини · зазвичай 1–2 візити",
-    },
-    {
-      title: "Складний колір",
-      desc: "Airtouch / balayage · план візитів індивідуальний",
-    },
-    {
-      title: "Вихід із темного",
-      desc: "Поетапне освітлення · чесний прогноз тону",
-    },
-    {
-      title: "Манікюр",
-      desc: "Форма + покриття · secondary beauty",
-    },
-    {
-      title: "Брови / вії",
-      desc: "Ламінування та форма · secondary beauty",
+      id: "curls",
+      title: "Форма і гладкість",
+      desc: "Текстура до/після · полірування",
+      before: "media/ba/web/curls-before.jpg",
+      after: "media/ba/web/curls-after.jpg",
+      thumb: "media/ba/web/curls-after.jpg",
     },
   ];
 
-  const ba = document.querySelector("[data-ba]");
-  if (ba) {
+  const initBa = (cases) => {
+    const ba = document.querySelector("[data-ba]");
+    if (!ba || !cases.length) return;
+
     const range = ba.querySelector("[data-ba-range]");
     const before = ba.querySelector("[data-ba-before]");
+    const after = ba.querySelector("[data-ba-after]");
     const handle = ba.querySelector("[data-ba-handle]");
     const title = ba.querySelector("[data-ba-title]");
     const desc = ba.querySelector("[data-ba-desc]");
     const indexEl = ba.querySelector("[data-ba-index]");
-    const thumbs = [...ba.querySelectorAll("[data-case]")];
+    const totalEl = ba.querySelector("[data-ba-total]");
+    const thumbsWrap = ba.querySelector("[data-ba-thumbs]");
+
+    if (totalEl) totalEl.textContent = String(cases.length).padStart(2, "0");
+
+    thumbsWrap.innerHTML = "";
+    cases.forEach((c, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ba__thumb" + (i === 0 ? " is-active" : "");
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", String(i === 0));
+      btn.dataset.case = String(i);
+      btn.style.backgroundImage = `url("${c.thumb || c.after}")`;
+      btn.innerHTML = `<span>${String(i + 1).padStart(2, "0")}</span>`;
+      btn.setAttribute("aria-label", `${c.title}`);
+      thumbsWrap.appendChild(btn);
+    });
+
+    const thumbs = [...thumbsWrap.querySelectorAll("[data-case]")];
     let userTouched = false;
     let demoPlayed = false;
 
@@ -123,7 +157,8 @@
     const selectCase = (i) => {
       const c = cases[i];
       if (!c) return;
-      ba.dataset.caseId = String(i);
+      if (after) after.style.backgroundImage = `url("${c.after}")`;
+      if (before) before.style.backgroundImage = `url("${c.before}")`;
       if (title) title.textContent = c.title;
       if (desc) desc.textContent = c.desc;
       if (indexEl) indexEl.textContent = String(i + 1).padStart(2, "0");
@@ -132,7 +167,7 @@
         btn.classList.toggle("is-active", on);
         btn.setAttribute("aria-selected", String(on));
       });
-      setPos(50);
+      setPos(52);
     };
 
     thumbs.forEach((btn) => {
@@ -155,22 +190,27 @@
           entries.forEach((entry) => {
             if (!entry.isIntersecting || demoPlayed || userTouched) return;
             demoPlayed = true;
-            const seq = [46, 56, 50];
+            const seq = [38, 64, 52];
             let step = 0;
             const tick = () => {
               if (userTouched) return;
               setPos(seq[step]);
               step += 1;
-              if (step < seq.length) window.setTimeout(tick, 450);
+              if (step < seq.length) window.setTimeout(tick, 420);
             };
-            window.setTimeout(tick, 800);
+            window.setTimeout(tick, 500);
           });
         },
-        { threshold: 0.45 }
+        { threshold: 0.4 }
       );
       io.observe(ba);
     }
-  }
+  };
+
+  fetch("media/cases.json")
+    .then((r) => r.json())
+    .then((data) => initBa(Array.isArray(data) ? data : fallbackCases))
+    .catch(() => initBa(fallbackCases));
 
   /* Form demo */
   const form = document.querySelector("[data-form]");
@@ -186,8 +226,7 @@
       return;
     }
     if (status) {
-      status.textContent =
-        "Дякуємо. У повному сайті заявка піде адміністратору; тут — демо-стан.";
+      status.textContent = "Заявку прийнято. Адміністратор підтвердить час у відповіді.";
     }
     form.reset();
   });
