@@ -11,8 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Prata&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/motion.css" />
 </head>
-<body>
+<body class="is-loading">
   <a class="skip-link" href="#main">Перейти до змісту</a>
 
   <header class="site-header" data-header>
@@ -56,18 +57,18 @@
       </div>
 
       <div class="hero__content">
-        <p class="eyebrow eyebrow--on-dark" data-reveal>
+        <p class="eyebrow eyebrow--on-dark">
           <span class="neon-line" aria-hidden="true"></span>
           Львів · Safe Town
         </p>
-        <h1 class="hero__title" data-reveal>
+        <h1 class="hero__title">
           Кучері, сивина<br />і складний колір.
         </h1>
-        <p class="hero__lead" data-reveal>
+        <p class="hero__lead">
           Там, де ти стаєш кращою. Спочатку слухаємо волосся,<br class="hide-mobile" />
           потім ріжемо, фарбуємо й відновлюємо.
         </p>
-        <div class="hero__cta" data-reveal>
+        <div class="hero__cta">
           <a class="btn btn--solid btn--lg" href="#booking" data-hero-cta>Записатися</a>
           <a class="btn btn--ghost-light btn--lg" href="#results">Дивитись роботи</a>
         </div>
@@ -75,21 +76,21 @@
     </section>
 
     <!-- PROOF METRICS -->
-    <section class="metrics" aria-label="Довіра">
+    <section class="metrics" aria-label="Довіра" data-stagger>
       <div class="metrics__grid">
-        <div class="metrics__item">
+        <div class="metrics__item" data-reveal="metric" style="--i:0">
           <span class="metrics__num">4.9</span>
           <span class="metrics__label">рейтинг Google</span>
         </div>
-        <div class="metrics__item">
+        <div class="metrics__item" data-reveal="metric" style="--i:1">
           <span class="metrics__num">480+</span>
           <span class="metrics__label">відгуків</span>
         </div>
-        <div class="metrics__item">
+        <div class="metrics__item" data-reveal="metric" style="--i:2">
           <span class="metrics__num">0&nbsp;₴</span>
           <span class="metrics__label">первинна консультація</span>
         </div>
-        <div class="metrics__item metrics__item--wide">
+        <div class="metrics__item metrics__item--wide" data-reveal="metric" style="--i:3">
           <span class="metrics__num metrics__num--sm">Safe Town</span>
           <span class="metrics__label">Львів · щодня 10:00–20:00</span>
         </div>
@@ -98,13 +99,13 @@
 
     <!-- RESULTS / BA -->
     <section class="section section--paper" id="results">
-      <div class="section__head">
+      <div class="section__head" data-reveal="copy">
         <p class="eyebrow">Результати</p>
         <h2>Роботи, які видно<br />без ретуші</h2>
         <p class="section__lead">Перетягніть лінію. Кожен кейс — реальна зйомка в салоні OWNED.</p>
       </div>
 
-      <div class="ba" data-ba>
+      <div class="ba" data-ba data-reveal="rise">
         <div class="ba__stage" data-ba-stage>
           <div class="ba__layer ba__layer--after" data-ba-after></div>
           <div class="ba__layer ba__layer--before" data-ba-before></div>
@@ -130,31 +131,31 @@
     </section>
 
     <!-- STRIP: more proof photography -->
-    <section class="filmstrip" aria-label="Атмосфера робіт">
-      <figure class="filmstrip__item">
+    <section class="filmstrip" aria-label="Атмосфера робіт" data-stagger>
+      <figure class="filmstrip__item" data-reveal="image" style="--i:0">
         <img src="media/web/hero-hair.jpg" alt="Результат кольору в салоні OWNED біля вивіски" width="800" height="1000" loading="lazy" />
       </figure>
-      <figure class="filmstrip__item">
+      <figure class="filmstrip__item" data-reveal="image" style="--i:1">
         <img src="media/web/curly-result.jpg" alt="Кучеряве волосся після роботи майстра" width="800" height="1000" loading="lazy" />
       </figure>
-      <figure class="filmstrip__item">
+      <figure class="filmstrip__item" data-reveal="image" style="--i:2">
         <img src="media/web/nails.jpg" alt="Манікюр у OWNED" width="800" height="1000" loading="lazy" />
       </figure>
-      <figure class="filmstrip__item filmstrip__item--dark">
+      <figure class="filmstrip__item filmstrip__item--dark" data-reveal="image" style="--i:3">
         <img src="media/web/award-trust.jpg" alt="Нагорода та довіра салону" width="800" height="1000" loading="lazy" />
       </figure>
     </section>
 
     <!-- SERVICES -->
     <section class="section section--bone" id="services">
-      <div class="section__head">
+      <div class="section__head" data-reveal="copy">
         <p class="eyebrow">Послуги</p>
         <h2>Спершу волосся.<br />Далі — увесь образ.</h2>
         <p class="section__lead">Acquisition wedge — складна робота з волоссям. Нігті, брови й макіяж у тому ж просторі.</p>
       </div>
 
-      <div class="ledger" role="list">
-        <article class="ledger__row" role="listitem">
+      <div class="ledger" role="list" data-stagger>
+        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:0">
           <span class="ledger__num" aria-hidden="true">01</span>
           <div class="ledger__body">
             <h3>Волосся</h3>
@@ -163,7 +164,7 @@
           <p class="ledger__price mono">від 700 ₴</p>
           <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
         </article>
-        <article class="ledger__row" role="listitem">
+        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:1">
           <span class="ledger__num" aria-hidden="true">02</span>
           <div class="ledger__body">
             <h3>Нігті</h3>
@@ -172,7 +173,7 @@
           <p class="ledger__price mono">від 500 ₴</p>
           <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
         </article>
-        <article class="ledger__row" role="listitem">
+        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:2">
           <span class="ledger__num" aria-hidden="true">03</span>
           <div class="ledger__body">
             <h3>Брови і вії</h3>
@@ -181,7 +182,7 @@
           <p class="ledger__price mono">від 300 ₴</p>
           <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
         </article>
-        <article class="ledger__row" role="listitem">
+        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:3">
           <span class="ledger__num" aria-hidden="true">04</span>
           <div class="ledger__body">
             <h3>Макіяж</h3>
@@ -195,27 +196,27 @@
 
     <!-- VISIT STEPS -->
     <section class="section section--ink" id="visit">
-      <div class="section__head section__head--inv">
+      <div class="section__head section__head--inv" data-reveal="copy">
         <p class="eyebrow eyebrow--on-dark">Візит</p>
         <h2>Чотири кроки<br />до результату</h2>
       </div>
-      <ol class="steps">
-        <li>
+      <ol class="steps" data-stagger>
+        <li data-reveal="fade" style="--i:0">
           <span class="steps__num">01</span>
           <h3>Заявка</h3>
           <p>Залишаєте номер тут або пишете в Instagram.</p>
         </li>
-        <li>
+        <li data-reveal="fade" style="--i:1">
           <span class="steps__num">02</span>
           <h3>Консультація</h3>
           <p>Дивимось стан волосся й варіанти. Безкоштовно.</p>
         </li>
-        <li>
+        <li data-reveal="fade" style="--i:2">
           <span class="steps__num">03</span>
           <h3>Візит</h3>
           <p>Погоджуємо очікуваний результат до початку роботи.</p>
         </li>
-        <li>
+        <li data-reveal="fade" style="--i:3">
           <span class="steps__num">04</span>
           <h3>Догляд</h3>
           <p>Підбираємо домашню систему, щоб форма трималась.</p>
@@ -226,7 +227,7 @@
     <!-- SPACE + NEON SIGNATURE -->
     <section class="section section--paper" id="space">
       <div class="space">
-        <div class="space__copy">
+        <div class="space__copy" data-reveal="copy">
           <p class="eyebrow">Простір</p>
           <h2>OWNED у Safe Town</h2>
           <p>Світло дзеркал, дерево, мох і неонова вивіска — матеріальний знак бренду. Саме звідси на сайті береться акцент: неон як світло в кімнаті, не як «ефект».</p>
@@ -235,10 +236,10 @@
         </div>
 
         <div class="space__media">
-          <figure class="space__frame space__frame--photo">
+          <figure class="space__frame space__frame--photo" data-reveal="image">
             <img src="media/web/space-interior.jpg" alt="Інтер’єр салону OWNED: дзеркала з підсвіткою" width="1200" height="900" loading="lazy" />
           </figure>
-          <figure class="space__frame space__frame--neon">
+          <figure class="space__frame space__frame--neon" data-reveal="image" style="--i:1">
             <video
               class="space__video"
               src="media/logo-ambient.mp4"
@@ -258,22 +259,22 @@
 
     <!-- REVIEWS -->
     <section class="section section--bone" id="reviews">
-      <div class="section__head">
+      <div class="section__head" data-reveal="copy">
         <p class="eyebrow">Відгуки</p>
         <h2>Голоси клієнток</h2>
       </div>
-      <div class="reviews">
-        <figure class="review">
+      <div class="reviews" data-stagger>
+        <figure class="review" data-reveal="fade" style="--i:0">
           <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
           <blockquote>«Нарешті підстригли кучері так, щоб вони жили своїм життям.»</blockquote>
           <figcaption><span class="mono">Олена</span> · стрижка · Google</figcaption>
         </figure>
-        <figure class="review">
+        <figure class="review" data-reveal="fade" style="--i:1">
           <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
           <blockquote>«Сивину не замальовували шапкою — зробили м’який grey blending.»</blockquote>
           <figcaption><span class="mono">Марія</span> · колір · Google</figcaption>
         </figure>
-        <figure class="review">
+        <figure class="review" data-reveal="fade" style="--i:2">
           <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
           <blockquote>«Пояснили план на кілька візитів і чесно сказали, чого не варто чекати за один раз.»</blockquote>
           <figcaption><span class="mono">Ірина</span> · складний колір · Google</figcaption>
@@ -284,10 +285,10 @@
     <!-- FOUNDER -->
     <section class="section section--ink" id="founder">
       <div class="founder">
-        <figure class="founder__portrait">
+        <figure class="founder__portrait" data-reveal="image">
           <img src="media/web/founder-halyna.jpg" alt="Галина — засновниця салону OWNED" width="900" height="1200" loading="lazy" />
         </figure>
-        <div class="founder__copy">
+        <div class="founder__copy" data-reveal="copy">
           <p class="eyebrow eyebrow--on-dark">Засновниця</p>
           <h2>Галина</h2>
           <p class="founder__thesis">Краса без шаблону: слухаємо волосся, а не тренд сезону.</p>
@@ -304,7 +305,7 @@
     <!-- CONTACT + BOOKING -->
     <section class="section section--paper contact" id="location">
       <div class="contact__grid">
-        <div class="contact__info">
+        <div class="contact__info" data-reveal="copy">
           <p class="eyebrow">Локація</p>
           <h2>Safe Town, Львів</h2>
           <p class="mono contact__line">Пн–Нд · 10:00–20:00</p>
@@ -313,12 +314,12 @@
             <a class="btn btn--text" href="https://instagram.com/" rel="noopener" target="_blank">Instagram →</a>
             <a class="btn btn--text" href="tel:+380000000000">Подзвонити →</a>
           </div>
-          <figure class="contact__side-photo">
+          <figure class="contact__side-photo" data-reveal="image">
             <img src="media/web/team-curly.jpg" alt="Команда OWNED за роботою з кучерявим волоссям" width="900" height="700" loading="lazy" />
           </figure>
         </div>
 
-        <div class="contact__form-wrap" id="booking" data-booking>
+        <div class="contact__form-wrap" id="booking" data-booking data-reveal="rise">
           <p class="eyebrow">Запис</p>
           <h2>Залишити заявку</h2>
           <p class="section__lead">Час підтвердить адміністратор у відповіді.</p>
@@ -369,8 +370,8 @@
         <a href="#booking">Запис</a>
       </div>
       <div>
-        <p class="eyebrow">Прототип v2</p>
-        <p>Реальні фото салону, засновниці та кейсів «до/після». Заявка поки демо.</p>
+        <p class="eyebrow">Прототип v3</p>
+        <p>Photo-first + motion pass. Заявка поки демо.</p>
       </div>
     </div>
     <p class="footer__legal mono">© OWNED · 2026</p>

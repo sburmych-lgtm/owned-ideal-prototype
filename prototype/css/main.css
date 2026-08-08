@@ -368,9 +368,6 @@ p {
   background: var(--ink);
   border-bottom: 1px solid var(--line-inv);
 }
-.mobile-menu[hidden] {
-  display: none;
-}
 .mobile-menu a {
   text-decoration: none;
   color: var(--tx-inv);
@@ -1038,32 +1035,7 @@ p {
   transform: translateY(0);
 }
 
-/* Reveal */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-}
-[data-reveal].is-in {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .filmstrip__item img,
-  .dock,
-  .hero__brand {
-    transition: none;
-  }
-}
+/* Reveal states live in motion.css */
 
 /* Desktop */
 @media (min-width: 900px) {
