@@ -1,0 +1,13 @@
+{
+  "name": "owned-ideal-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OWNED beauty salon — high-fidelity ideal frontend prototype",
+  "scripts": {
+    "start": "npx --yes serve prototype -l ${PORT:-3000}",
+    "dev": "npx --yes serve prototype -l 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,9 @@
+# OWNED Frontend Rules
+
+- Read `docs/03_DESIGN_SYSTEM.md` before styling.
+- Ukrainian UI copy only on salon pages.
+- Brand-first full-bleed hero; no hero cards; no floating promo chips.
+- Separate mobile vs desktop compositions at 900px.
+- Proof before long atmosphere.
+- Respect `prefers-reduced-motion`.
+- Do not invent Google ratings; keep verification note until API/source confirmed.
