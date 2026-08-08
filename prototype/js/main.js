@@ -48,20 +48,23 @@
     if (!dock) return;
     if (mqDesktop.matches) {
       dock.hidden = true;
+      dock.classList.remove("is-visible");
       body.classList.remove("has-dock");
       return;
     }
+    // Show only after primary hero CTA has left the viewport
     const heroGone = heroCta
-      ? heroCta.getBoundingClientRect().bottom < 0
-      : window.scrollY > window.innerHeight * 0.55;
+      ? heroCta.getBoundingClientRect().bottom < 8
+      : window.scrollY > window.innerHeight * 0.7;
     const bookingVisible = booking
       ? (() => {
           const r = booking.getBoundingClientRect();
-          return r.top < window.innerHeight * 0.75 && r.bottom > 80;
+          return r.top < window.innerHeight * 0.85 && r.bottom > 64;
         })()
       : false;
-    const show = heroGone && !bookingVisible;
+    const show = Boolean(heroGone && !bookingVisible);
     dock.hidden = !show;
+    dock.classList.toggle("is-visible", show);
     body.classList.toggle("has-dock", show);
   };
 

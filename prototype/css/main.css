@@ -427,6 +427,9 @@ p {
   gap: 1rem 1.5rem;
   margin-top: 1.75rem;
 }
+.hero__cta .btn--solid {
+  min-width: 11rem;
+}
 .hero__scroll-hint {
   position: absolute;
   right: var(--gutter);
@@ -905,7 +908,7 @@ p {
   padding-top: 1rem;
 }
 
-/* Dock */
+/* Dock — mobile only, never on first hero paint */
 .dock {
   position: fixed;
   left: 0;
@@ -917,9 +920,13 @@ p {
   background: color-mix(in srgb, var(--ink) 92%, transparent);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--line-inv);
+  display: none;
+}
+.dock.is-visible {
+  display: block;
 }
 .dock[hidden] {
-  display: none;
+  display: none !important;
 }
 
 /* Reveal */
