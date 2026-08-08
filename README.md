@@ -1,22 +1,15 @@
-# OWNED — ідеальний прототип (v2)
+# OWNED — ідеальний прототип (v3)
 
 Живий демо: **https://web-production-f6d11.up.railway.app/**
 
-## Що змінилось у v2
-- Реальні фото салону, засновниці Галини, кейсів «до/після»
-- Відео неонової вивіски як живий бренд-марк
-- Кінематографічний hero (як у audit-макеті), ledger-послуги (як у stitch), proof-first BA
-- Окремі композиції mobile / desktop від 900px
+## v3 Motion pass
+Editorial motion system on CSS + IntersectionObserver + rAF (no React rewrite).
+Tokens from Motion spring easings. `prefers-reduced-motion` respected.
 
 ## Локально
 ```bash
-npm run dev
+npm start
 ```
 
 ## Деплой
-Railway проєкт `owned-ideal-prototype` — `npm start` віддає папку `prototype/`.
-
-## Макети-референси (не клон)
-1. https://owned-audit-production.up.railway.app/
-2. https://owned-stitch-production.up.railway.app/
-3. Еталон: https://laserandme.com/
+Railway service `web` · Dockerfile · `node scripts/serve.mjs`
