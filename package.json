@@ -1,12 +1,13 @@
 {
   "name": "owned-ideal-prototype",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "OWNED beauty salon — high-fidelity ideal frontend prototype",
+  "description": "OWNED beauty salon — redesigned marketing site (static, no build step at runtime)",
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "dev": "node scripts/serve.mjs"
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build-site.mjs"
   },
   "engines": {
     "node": ">=18"

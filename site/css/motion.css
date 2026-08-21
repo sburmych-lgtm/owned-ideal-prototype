@@ -1,0 +1,76 @@
+/* ==========================================================================
+   OWNED — motion. Three intentional moves only (see docs/03_DESIGN_SYSTEM.md):
+   1. neon reveal on the hero mark
+   2. before/after affordance nudge, once, stopped on first interaction
+   3. section fade-rise on enter
+   Everything degrades to a static page without JS and under reduced motion.
+   ========================================================================== */
+
+/* 1 · neon reveal ---------------------------------------------------------- */
+
+.js .hero__title em {
+  animation: neon-in 900ms var(--ease) 160ms both;
+}
+
+@keyframes neon-in {
+  from { opacity: 0.25; text-shadow: none; }
+  60%  { opacity: 1; text-shadow: 0 0 46px var(--neon-glow); }
+  to   { opacity: 1; text-shadow: 0 0 34px var(--neon-glow); }
+}
+
+/* 2 · before/after affordance --------------------------------------------- */
+
+.compare[data-hint="true"] .compare__layer--before,
+.compare[data-hint="true"] .compare__divider {
+  animation: ba-nudge 1500ms var(--ease) 420ms 1;
+}
+
+@keyframes ba-nudge {
+  0%   { --pos: 50%; }
+  35%  { --pos: 41%; }
+  70%  { --pos: 58%; }
+  100% { --pos: 50%; }
+}
+
+@property --pos {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+/* 3 · section fade-rise ---------------------------------------------------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-3) var(--ease), transform var(--dur-3) var(--ease);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Interaction polish ------------------------------------------------------- */
+
+.route:hover { transform: translateY(-2px); }
+.rail button { transition: opacity var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease); }
+
+/* Reduced motion ----------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal] { opacity: 1; transform: none; }
+  .route:hover { transform: none; }
+  .master:hover .master__photo img { scale: 1; }
+}

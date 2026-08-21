@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package.json ./
 COPY scripts ./scripts
 COPY prototype ./prototype
+COPY site ./site
 ENV NODE_ENV=production
 ENV PORT=8080
 EXPOSE 8080
