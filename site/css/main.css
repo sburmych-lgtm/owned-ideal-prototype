@@ -200,6 +200,50 @@ button, input, select, textarea { font: inherit; color: inherit; }
   letter-spacing: -0.01em;
 }
 
+/* ------------------------------------------------------- video surfaces -- */
+
+/* The poster stays in normal flow and defines the box, so upgrading to video
+   cannot shift layout. The clip is an overlay whose first frame is the poster,
+   so the swap is invisible. */
+.media { position: relative; }
+
+.media__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 400ms var(--ease);
+  pointer-events: none;
+}
+.media__video.is-ready { opacity: 1; }
+
+.media__toggle {
+  position: absolute;
+  right: 0.7rem;
+  top: 0.7rem;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--line-inv-strong);
+  border-radius: 50%;
+  background: rgba(21, 23, 26, 0.62);
+  backdrop-filter: blur(6px);
+  color: var(--tx-inv);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+}
+.media__toggle:hover { background: rgba(21, 23, 26, 0.85); border-color: var(--neon); }
+.media__toggle svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
+.media__toggle .icon-pause { display: block; }
+.media__toggle .icon-play { display: none; }
+.media__toggle[aria-pressed="true"] .icon-pause { display: none; }
+.media__toggle[aria-pressed="true"] .icon-play { display: block; }
+
 /* ---------------------------------------------------------------- buttons */
 
 .btn {
@@ -967,6 +1011,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .space-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
 .space-card__body {
   position: absolute;
+  z-index: 2;
   inset: auto 0 0 0;
   padding: 4rem 1.15rem 1.15rem;
   background: linear-gradient(to top, rgba(21, 23, 26, 0.92) 12%, transparent);

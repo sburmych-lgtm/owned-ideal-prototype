@@ -15,7 +15,7 @@ previous v3 prototype at `/v3/`.
 
 | # | Problem on the live site | Effect |
 |---|---|---|
-| 1 | Hero is an autoplaying 6.8 MB video; three more salon videos of ~6 MB each sit further down | Very expensive first paint on mobile data, which is most of the audience |
+| 1 | Hero autoplays a 6.8 MB video during page load; four more salon clips of 2.4–6.4 MB sit further down, all `preload="metadata"` | Very expensive first paint on mobile data, which is most of the audience |
 | 2 | Hero headline, section copy and reveal states are painted by client JS (~600 KB of bundles) | Nothing readable before hydration; a slow connection sees an empty dark screen |
 | 3 | Two competing header CTAs ("Консультація 0 ₴" and "Запис") | Splits the one action that matters |
 | 4 | Body/caption type down to 12–13 px, eyebrows at 11 px | Hard work for a client base that skews 30+ |
@@ -35,7 +35,8 @@ client actually asks.
 **Hero.** Leads with the work rather than the room: a full-height result
 photograph with the salon interior inset over it. Headline, lead, both CTAs
 and the opening hours are in the HTML, so the first screen is complete before
-any script runs. LCP is a single 90 KB WebP.
+any script runs. LCP is a single 90 KB WebP. The inset is a live surface — see
+§3 — but its poster is the finished picture, not a placeholder.
 
 **Results.** The centrepiece. A large before/after comparison driven by a range
 input — draggable anywhere on the image, keyboard-operable, announced to
@@ -60,23 +61,131 @@ IBM Plex Mono, ink / moss / bone / paper with the neon used only as light on
 dark. Minimum body size raised to 16 px, captions to 14 px, eyebrows to
 12.5 px, and every text pair verified against its own background.
 
-## 3 · Measurements
+## 3 · Media architecture
 
-Taken with Playwright against the built site.
+Video was not dropped from the design — the original *delivery* was the
+problem, not the medium. The footage is re-cut, re-encoded and deferred.
 
-| | Redesign |
+### What is used
+
+Both clips are cut from the same continuous dolly shot past the neon sign, so
+the two moving surfaces on the page share one art direction. The other three
+masters (`salon-1/2/3`) are watermarked promo montages with hard cuts; they
+would fight a calm editorial page, so they are not used.
+
+| | A · hero inset | B · space card 02 |
+|---|---|---|
+| Where | Hero, inset over the result photo | "Простір і вивіска", the section about the room |
+| Breakpoints | ≥ 48 rem only | all |
+| Crop | 4:3, `crop=1440:1080:240:0` of the 1920×1080 master | 3:4, `crop=810:1080:483:0` of the same master |
+| Codec | VP9 / WebM, H.264 / MP4 fallback | VP9 / WebM, H.264 / MP4 fallback |
+| Dimensions | 720 × 540 | 720 × 960 |
+| Duration | 5.5 s, plays once then rests on its last frame | 8.0 s ping-pong loop (4.0 s forward + reverse) |
+| Frame rate | 25 fps (masters are 120 fps) | 25 fps |
+| Audio | none — no audio stream in the file | none |
+| WebM | 313 208 B · **306 KB** | 310 743 B · **303 KB** |
+| MP4 fallback | 392 596 B · 383 KB | 512 496 B · 500 KB |
+| Poster | 35 004 B · **34 KB** WebP | 26 210 B · **26 KB** WebP |
+
+Encoding is reproducible via `scripts/build-video.mjs`; the outputs are
+committed so no build or deploy needs ffmpeg.
+
+Quality was chosen by measurement, not by picking a byte target. Against a
+lossless reference of the same crop, VP9 CRF 44 scores SSIM 0.975 at 306 KB
+where H.264 CRF 26 scores 0.971 at 470 KB — so VP9 is primary and H.264 is
+only a fallback. The ping-pong turnaround measures SSIM 0.997 between the two
+frames either side of the fold, so the loop has no visible seam.
+
+### How it loads
+
+- The HTML contains **no `<video>` and no `<source>`** — verified, zero
+  matches in the built file. There is nothing for the preload scanner to find,
+  so a clip can never bid against the critical render.
+- Each surface ships as a `<figure class="media">` holding only its poster.
+  Script builds the `<video>` after the `load` event, inside
+  `requestIdleCallback`, and only when the surface is at least 25 % on screen.
+- The poster is the clip's **own first frame** — SSIM 0.985 (space) and 0.982
+  (hero) between poster and frame 0 — so activation cannot shift the
+  composition. The clip fades in over 400 ms purely to hide any decode delay.
+- The poster `<img>` stays in normal flow and carries `width`/`height`; the
+  clip is an absolutely-positioned overlay. Measured CLS from activation:
+  **0.0033**.
+- The poster is `loading="lazy"`, which also means the hero inset costs a
+  phone nothing: it is `display:none` below 48 rem, and a lazy image in a
+  hidden box is never fetched.
+- Clips pause when scrolled out of view. The hero reveal plays once per visit
+  and is then unobserved; scrolling back does not re-trigger it.
+- `MP4` carries `+faststart`; both files are muted, `playsinline`,
+  `aria-hidden` and not focusable.
+
+### When it does not load at all
+
+The poster is the complete, finished visual in every one of these cases — no
+degraded state, no spinner, no broken frame:
+
+- JavaScript disabled.
+- `prefers-reduced-motion: reduce` — verified: zero `<video>` elements created
+  and **0 KB** of video requested. A user who turns the setting on mid-visit
+  gets the stills back.
+- `navigator.connection.saveData`, or an `effectiveType` of `2g`/`slow-2g` —
+  verified: zero `<video>` elements, **0 KB** of video.
+- No `IntersectionObserver`, or `play()` rejected by autoplay policy.
+
+The looping surface carries a visible pause/play control (keyboard reachable,
+`aria-pressed`, Ukrainian label). The hero reveal needs none because it stops
+by itself.
+
+## 4 · Measurements
+
+Local Playwright runs against `node scripts/serve.mjs`, uncompressed over
+loopback. **These are local figures.** A deployed host adds compression and
+real network conditions, so treat them as relative, not as production numbers;
+no production LCP is claimed here.
+
+### Payload, split as it actually arrives
+
+| | mobile 390 px | desktop 1440 px |
+|---|---|---|
+| First screen, everything except video | **522 KB** · 19 requests | **756 KB** |
+| Video fetched for the first screen | **0 KB** | 306 KB (hero clip, after `load`) |
+| First screen as delivered | **522 KB** | 1 062 KB · 30 requests |
+| Video bytes at the `load` event | **0 KB** | **0 KB** |
+| Deferred video, after scrolling the whole page | 303 KB · 1 file | 609 KB · 2 files |
+| Whole page, every section scrolled, video included | 1 220 KB | 1 687 KB |
+| JavaScript | 14 KB, deferred, non-blocking | 14 KB |
+| Fonts | 224 KB self-hosted, cyrillic + latin subsets, zero third-party requests | same |
+
+A phone downloads **no video at all** for the first screen, and 303 KB only if
+the visitor scrolls as far as the space section. The desktop hero clip is
+306 KB and starts strictly after `load`.
+
+Deferred media is listed separately above on purpose: it is not part of the
+initial page weight and is not presented as if it were.
+
+For contrast, the live site autoplays a 6.8 MB hero video during page load and
+carries four more clips of 2.4–6.4 MB, on top of ~600 KB of JavaScript
+bundles.
+
+### Verification
+
+Every suite re-run after the media revision:
+
+| Suite | Result |
 |---|---|
-| First load, mobile 390 px | **515 KB** across 19 requests |
-| First load, desktop 1440 px | **754 KB** across 29 requests |
-| JavaScript | **9 KB**, deferred, non-blocking |
-| Fonts | 224 KB self-hosted, cyrillic + latin subsets only, zero third-party requests |
-| LCP (local) | ~230 ms |
-| axe-core (wcag2a/aa, wcag21a/aa, best-practice) | **0 violations** at 1440 px and 390 px |
+| Functional Playwright checks (desktop) | 17 / 17 |
+| Media behaviour checks | 19 / 19 |
+| Keyboard, focus order and broken-source checks | 10 / 10 |
+| JavaScript disabled | 10/10 cases, 8/8 masters, prices, booking routes present |
+| axe-core, reduced motion (no video in DOM) | **0 violations** at 1440 px and 390 px |
+| axe-core, video active (2 clips + pause control) | **0 violations** at 1440 px and 390 px |
+| Console and page errors | none |
+| Layout shift from video activation | CLS 0.0033 |
 
-For contrast: the live site's hero video alone is 6.8 MB, and the three space
-videos add ~6 MB each on top of ~600 KB of JavaScript bundles.
+axe-core reporting zero violations is an automated result over the rules it
+covers. It is not a conformance claim, and no WCAG conformance is claimed
+anywhere in this document.
 
-## 4 · Accessibility and resilience
+## 5 · Accessibility and resilience
 
 - Every section renders and every action works with JavaScript disabled —
   verified in a JS-off browser context (10/10 cases, 8/8 masters, prices,
@@ -85,12 +194,18 @@ videos add ~6 MB each on top of ~600 KB of JavaScript bundles.
   arrow keys move it.
 - Accordions and the mobile menu are native `<details>`; no ARIA needed to make
   them work.
-- `prefers-reduced-motion` removes all three motions and the hover scale.
+- `prefers-reduced-motion` removes all three motions and the hover scale, and
+  suppresses both salon clips entirely — the posters stand in as finished
+  images, not as placeholders waiting for something.
+- The looping clip has a keyboard-reachable pause/play control; the hero clip
+  stops on its own after 5.5 s and does not restart on scroll-back.
+- Clips are `aria-hidden` and removed from the tab order: they are decoration,
+  and their meaning is already carried by the poster's `alt` text.
 - Skip link, landmark regions, visible focus ring, ≥44 px touch targets.
 - Scroll-reveal fails open: an element that a fast scroll carried past the
   viewport is revealed rather than stranded at `opacity: 0`.
 
-## 5 · Files
+## 6 · Files
 
 ```
 site/
@@ -102,8 +217,10 @@ site/
   js/app.js           progressive enhancement only
   fonts/              woff2 subsets
   media/              WebP derivatives at 1x/2x
+  media/video/        two salon clips: VP9 webm + H.264 mp4 + WebP poster
 scripts/
   build-site.mjs      site.json -> site/index.html   (npm run build)
+  build-video.mjs     salon masters -> site/media/video  (needs ffmpeg)
   fetch-fonts.mjs     refresh site/fonts + css/fonts.css
   serve.mjs           static server; / = v4, /v3/ = previous prototype
 ```
@@ -112,7 +229,7 @@ Editing content means editing `site/data/site.json` and running
 `npm run build`. The generated `index.html` is committed so deploys need no
 build step.
 
-## 6 · Known gaps
+## 7 · Known gaps
 
 - The booking composer has no backend. Wiring it to a real endpoint (or to the
   bookon.ua API) is the obvious next step; the submit handler is the single
@@ -120,10 +237,21 @@ build step.
 - The contacts card links out to Google Maps instead of embedding it, to avoid
   a third-party script on every page load. An embed is a one-line change if the
   salon prefers it.
-- The salon's video footage is not used. If it should return, load it on
-  interaction behind the existing poster stills rather than on autoplay.
+- The hero clip is desktop and tablet only, because the inset it lives in is
+  `display:none` below 48 rem. On a phone the hero stays a still, deliberately:
+  no available crop of this footage beats the result photograph on a 390 px
+  screen, and the first screen stays cheap. Mobile still gets a full video
+  moment in the space section.
+- Only one of the five masters is used. `salon-1/2/3` are watermarked promo
+  montages with hard cuts; re-shooting a second calm continuous take would give
+  the space section a genuine second moving surface.
+- `scripts/build-video.mjs` needs an ffmpeg with libvpx-vp9 and libx264, and
+  the masters, neither of which is in the repository. The encoded outputs are
+  committed, so this only matters if the crops change.
+- No production performance numbers are recorded here. The figures in §4 are
+  local; measure the deployed candidate separately.
 
-## 7 · Screenshots
+## 8 · Screenshots
 
 | | |
 |---|---|
@@ -133,3 +261,6 @@ build step.
 | Full page, mobile | `screenshots/redesign-v4-mobile.jpg` |
 | Masters, mobile | `screenshots/redesign-v4-mobile-masters.webp` |
 | Space triptych | `screenshots/redesign-v4-space.webp` |
+| Hero with the clip active | `screenshots/redesign-v4b-hero-video.webp` |
+| Space card 02 playing, with its pause control | `screenshots/redesign-v4b-space-video.webp` |
+| Space card 02 on mobile | `screenshots/redesign-v4b-mobile-space-video.webp` |

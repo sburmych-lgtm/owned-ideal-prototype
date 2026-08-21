@@ -89,6 +89,145 @@
     }
   }
 
+  /* ------------------------------------------------------ salon video ----- */
+
+  /**
+   * Upgrades a poster to its salon clip, but only once the page has finished
+   * its critical render and only when the surface is actually on screen. The
+   * markup carries no <video> and no <source>, so nothing here is discoverable
+   * by the preload scanner and nothing competes with LCP.
+   *
+   * Held back entirely under reduced motion or a metered connection — the
+   * poster is the finished picture in those cases, not a placeholder.
+   */
+  const videoSurfaces = $$("[data-video]");
+
+  const metered = () => {
+    const c = navigator.connection;
+    if (!c) return false;
+    return Boolean(c.saveData) || /(^|-)2g$/.test(c.effectiveType || "");
+  };
+
+  const PAUSE_ICON =
+    '<svg viewBox="0 0 12 12" aria-hidden="true" class="icon-pause"><rect x="1.5" y="1" width="3" height="10" rx="0.5"/><rect x="7.5" y="1" width="3" height="10" rx="0.5"/></svg>' +
+    '<svg viewBox="0 0 12 12" aria-hidden="true" class="icon-play"><path d="M2.5 1.2 10.5 6l-8 4.8Z"/></svg>';
+
+  if (videoSurfaces.length && !reduced.matches && !metered()) {
+    const start = () => {
+      videoSurfaces.forEach((surface) => {
+        const base = surface.dataset.video;
+        const loop = surface.dataset.videoMode === "loop";
+        const poster = $(".media__poster", surface);
+        let video = null;
+        let failed = false;
+
+        const build = () => {
+          video = document.createElement("video");
+          video.className = "media__video";
+          video.muted = true;
+          video.defaultMuted = true;
+          video.playsInline = true;
+          video.setAttribute("playsinline", "");
+          video.setAttribute("aria-hidden", "true");
+          video.setAttribute("tabindex", "-1");
+          video.loop = loop;
+          video.preload = "auto";
+          if (poster) video.poster = poster.currentSrc || poster.src;
+
+          [["webm", "video/webm"], ["mp4", "video/mp4"]].forEach(([ext, type]) => {
+            const source = document.createElement("source");
+            source.src = `${base}.${ext}`;
+            source.type = type;
+            video.appendChild(source);
+          });
+
+          video.addEventListener("playing", () => video.classList.add("is-ready"), { once: true });
+          video.addEventListener("error", () => {
+            failed = true;
+            video.remove();
+            video = null;
+          });
+
+          // Ahead of the caption so the clip never paints over the words.
+          surface.insertBefore(video, poster ? poster.nextSibling : null);
+
+          if (loop) addToggle();
+        };
+
+        const addToggle = () => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "media__toggle";
+          button.setAttribute("aria-pressed", "false");
+          const label = surface.dataset.videoLabel || "відео";
+          button.setAttribute("aria-label", `Зупинити ${label}`);
+          button.innerHTML = PAUSE_ICON;
+          button.addEventListener("click", () => {
+            if (!video) return;
+            const paused = !video.paused;
+            if (paused) video.pause();
+            else video.play().catch(() => {});
+            button.setAttribute("aria-pressed", String(paused));
+            button.setAttribute("aria-label", `${paused ? "Відтворити" : "Зупинити"} ${label}`);
+            surface.dataset.videoPaused = String(paused);
+          });
+          surface.appendChild(button);
+        };
+
+        if (!("IntersectionObserver" in window)) return;
+
+        let spent = false;
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                if (video && !video.paused) video.pause();
+                return;
+              }
+              if (failed || spent || surface.dataset.videoPaused === "true") return;
+              if (!video) {
+                build();
+                // A reveal runs once per visit; scrolling back must not re-trigger it.
+                if (!loop && video) {
+                  video.addEventListener("ended", () => {
+                    spent = true;
+                    io.unobserve(surface);
+                  });
+                }
+              }
+              if (!video) return;
+              const attempt = video.play();
+              if (attempt && attempt.catch) attempt.catch(() => {});
+            });
+          },
+          { threshold: 0.25 }
+        );
+        io.observe(surface);
+      });
+
+      // A user who turns reduced motion on mid-visit gets the stills back.
+      const stop = () => {
+        $$(".media__video").forEach((v) => {
+          v.pause();
+          v.classList.remove("is-ready");
+        });
+        $$(".media__toggle").forEach((b) => b.remove());
+      };
+      if (reduced.addEventListener) {
+        reduced.addEventListener("change", (e) => e.matches && stop());
+      }
+    };
+
+    // Only after load, and then only when the main thread is free.
+    const schedule = () =>
+      window.requestIdleCallback
+        ? window.requestIdleCallback(start, { timeout: 2500 })
+        : window.setTimeout(start, 400);
+
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+  }
+
   /* ------------------------------------------------- before / after slider */
 
   $$("[data-compare]").forEach((compare) => {

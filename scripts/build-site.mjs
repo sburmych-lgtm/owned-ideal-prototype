@@ -83,6 +83,32 @@ const preloadFonts = fs
   .map((f) => `  <link rel="preload" href="fonts/${f}" as="font" type="font/woff2" crossorigin />`)
   .join("\n");
 
+/**
+ * A poster image that JS may later upgrade to a muted salon loop.
+ *
+ * No <video> and no <source> is emitted: nothing for the preload scanner to
+ * find, so the clip cannot compete with the critical render. The poster is the
+ * clip's own first frame, so activation changes nothing about the composition,
+ * and it stays the complete visual fallback without JS, under reduced motion
+ * and on a metered connection.
+ */
+function videoSurface(base, { alt, mode = "once", label, className = "" }) {
+  const poster = `${base}-poster.webp`;
+  const { w, h } = measure(poster);
+  // Lazy on purpose, and not only to protect LCP: the hero inset is
+  // display:none below 48rem, and a lazy image in a hidden box is never
+  // fetched — so phones pay nothing for a surface they do not show.
+  const load = 'loading="lazy" fetchpriority="low"';
+  return [
+    `<figure class="media ${className}"`,
+    ` data-video="${esc(base)}" data-video-mode="${esc(mode)}"`,
+    label ? ` data-video-label="${esc(label)}"` : "",
+    `>\n            `,
+    `<img class="media__poster" src="${esc(poster)}"`,
+    ` width="${w}" height="${h}" alt="${esc(alt)}" ${load} decoding="async" />`,
+  ].join("");
+}
+
 const monogram = fs
   .readFileSync(path.join(SITE, "media", "brand", "monogram.svg"), "utf8")
   .replace(/<\?xml[^>]*\?>/, "")
@@ -140,11 +166,11 @@ const heroBlock = `
             })}
             <figcaption class="hero__caption">Airtouch · робота команди OWNED</figcaption>
           </figure>
-          <figure class="hero__shot hero__shot--inset">
-            ${img("media/space/hero-wide", {
-              alt: "Зал салону OWNED з неоновою вивіскою у ЖК Safe Town, Львів",
-              sizes: "(min-width: 62rem) 16rem, 26vw",
-            })}
+          ${videoSurface("media/video/hero-room", {
+            className: "hero__shot hero__shot--inset",
+            alt: "Зал салону OWNED з неоновою вивіскою у ЖК Safe Town, Львів",
+            mode: "once",
+          })}
           </figure>
         </div>
       </div>
@@ -388,11 +414,22 @@ const spaceBlock = `
         <div class="space-grid">
           ${data.space
             .map(
-              (s, i) => `<figure class="space-card" data-reveal style="--i:${i}">
-            ${img(s.image, {
-              alt: s.caption,
-              sizes: "(min-width: 48rem) 31vw, 92vw",
-            })}
+              // Card 02 is the section's subject — the neon sign itself — so it
+              // is the one surface where motion earns its bytes. The other two
+              // stay stills rather than becoming generic moving wallpaper.
+              (s, i) => `<figure class="space-card${s.id === "space" ? " media" : ""}" data-reveal style="--i:${i}"${
+                s.id === "space"
+                  ? ' data-video="media/video/space-neon" data-video-mode="loop" data-video-label="фонове відео простору"'
+                  : ""
+              }>
+            ${
+              s.id === "space"
+                ? `<img class="media__poster" src="media/video/space-neon-poster.webp" width="720" height="960" alt="${esc(s.caption)}" loading="lazy" decoding="async" />`
+                : img(s.image, {
+                    alt: s.caption,
+                    sizes: "(min-width: 48rem) 31vw, 92vw",
+                  })
+            }
             <figcaption class="space-card__body">
               <span class="space-card__num">${esc(s.num)}</span>
               <span class="space-card__title">${esc(s.title)}</span>

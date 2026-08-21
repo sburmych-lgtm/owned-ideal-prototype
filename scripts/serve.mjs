@@ -26,6 +26,7 @@ const TYPES = {
   ".png": "image/png",
   ".webp": "image/webp",
   ".mp4": "video/mp4",
+  ".webm": "video/webm",
   ".ico": "image/x-icon",
   ".woff2": "font/woff2",
 };
