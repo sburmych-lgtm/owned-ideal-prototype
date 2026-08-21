@@ -287,3 +287,33 @@ build step.
 | Hero with the clip active | `screenshots/redesign-v4b-hero-video.webp` |
 | Space card 02 playing, with its pause control | `screenshots/redesign-v4b-space-video.webp` |
 | Space card 02 on mobile | `screenshots/redesign-v4b-mobile-space-video.webp` |
+
+From the deployed comparison candidate
+(`owned-v4-claude-redesign-production.up.railway.app`):
+
+| | |
+|---|---|
+| Hero, clip active | `screenshots/deployed-v4b-hero.webp` |
+| Full page, desktop | `screenshots/deployed-v4b-desktop.webp` |
+| Full page, mobile | `screenshots/deployed-v4b-mobile.jpg` |
+| Space card 02, mobile | `screenshots/deployed-v4b-mobile-space.webp` |
+
+Chromium cannot reach external hosts from the environment these were captured
+in, so the deployed build was mirrored asset-for-asset over HTTP and rendered
+from that mirror. All 86 assets were verified byte-for-byte identical to what
+the deployment serves, so the pixels are the deployed build's.
+
+## 9 · Deployment
+
+Isolated side-by-side comparison candidate, not a production deployment:
+
+| | |
+|---|---|
+| URL | https://owned-v4-claude-redesign-production.up.railway.app |
+| Railway project | `owned-v4-claude-redesign` (`bd74275a-3754-46bf-9d41-a4fbc9d40b22`) |
+| Service | `owned-v4-claude-redesign` (`b46331cb-2caf-4ee0-ab5b-682a4dad18e7`) |
+| Source | `sburmych-lgtm/owned-ideal-prototype`, branch `claude/beauty-salon-redesign-cium8r` |
+| V3 prototype | still served at `/v3/` |
+
+No custom or production domain is pointed at it, and no existing deployment was
+modified.
