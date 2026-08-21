@@ -8,6 +8,10 @@
 Повний редизайн на базі контенту живого сайту
 <https://owned-v2-claude-opus.vercel.app>.
 
+**Прев'ю цієї гілки:** <https://owned-v4-redesign-6b2xni-production.up.railway.app>
+(Railway service `owned-v4-redesign-6b2xni`, гілка `claude/beauty-salon-redesign-6b2xni`.
+Деплой v3 на `web-production-f6d11.up.railway.app` лишається без змін.)
+
 Головна зміна — **ритм поверхонь**: розділи чергуються `ink → bone → paper`,
 де темне несе атмосферу, а світле — інформацію (прайс, майстри, форма запису).
 Плюс editorial-геометрія (радіуси 0–2px), моноширинні дані, самостійно розміщені

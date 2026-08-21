@@ -5,6 +5,8 @@
 статичний HTML/CSS/JS — без фреймворку, без зовнішніх залежностей у рантаймі.
 
 Гілка: `claude/beauty-salon-redesign-6b2xni` (паралельна до `main`).
+Прев'ю: <https://owned-v4-redesign-6b2xni-production.up.railway.app> — окремий Railway-сервіс `owned-v4-redesign-6b2xni`
+у проєкті `owned-ideal-prototype`; наявний v3-деплой не зачеплено.
 
 ---
 
