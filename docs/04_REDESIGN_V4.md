@@ -137,30 +137,48 @@ by itself.
 
 ## 4 · Measurements
 
-Local Playwright runs against `node scripts/serve.mjs`, uncompressed over
-loopback. **These are local figures.** A deployed host adds compression and
-real network conditions, so treat them as relative, not as production numbers;
-no production LCP is claimed here.
+**These are local figures**, from Playwright against `node scripts/serve.mjs`
+over loopback. They are transfer sizes, so they carry across to the deployed
+build — the same server and the same files run there — but real network
+conditions do not. No production LCP or Core Web Vitals figure is claimed
+anywhere in this document; measure the deployed candidate separately if you
+need one.
 
 ### Payload, split as it actually arrives
 
+Wire bytes, measured through the Chrome DevTools Protocol
+(`encodedDataLength`) against `node scripts/serve.mjs`, which now negotiates
+brotli/gzip for HTML, CSS, JS, JSON and SVG and leaves already-compressed media
+and fonts alone. Median of three runs.
+
 | | mobile 390 px | desktop 1440 px |
 |---|---|---|
-| First screen, everything except video | **522 KB** · 19 requests | **756 KB** |
-| Video fetched for the first screen | **0 KB** | 306 KB (hero clip, after `load`) |
-| First screen as delivered | **522 KB** | 1 062 KB · 30 requests |
+| **First screen, excluding video** | **380 KB** · 19 requests | **616 KB** · 30 requests |
 | Video bytes at the `load` event | **0 KB** | **0 KB** |
-| Deferred video, after scrolling the whole page | 303 KB · 1 file | 609 KB · 2 files |
-| Whole page, every section scrolled, video included | 1 220 KB | 1 687 KB |
-| JavaScript | 14 KB, deferred, non-blocking | 14 KB |
-| Fonts | 224 KB self-hosted, cyrillic + latin subsets, zero third-party requests | same |
+| Video fetched for the first screen | **0 KB** | 306 KB (hero clip, after `load`) |
+| First screen as delivered | **380 KB** | 922 KB |
+| Deferred video, whole page scrolled | 304 KB · 1 file | 610 KB · 2 files |
+| Whole page, every section scrolled, video included | 1 049 KB | 1 551 KB |
 
-A phone downloads **no video at all** for the first screen, and 303 KB only if
+A phone downloads **no video at all** for the first screen, and 304 KB only if
 the visitor scrolls as far as the space section. The desktop hero clip is
 306 KB and starts strictly after `load`.
 
 Deferred media is listed separately above on purpose: it is not part of the
 initial page weight and is not presented as if it were.
+
+Individual text assets, raw → brotli:
+
+| | raw | gzip | brotli |
+|---|---|---|---|
+| `index.html` | 114 600 B | 18 625 B | **15 382 B** |
+| `css/main.css` | 37 917 B | 8 069 B | **7 822 B** |
+| `css/fonts.css` | 9 439 B | 833 B | **724 B** |
+| `js/app.js` | 14 196 B | 4 557 B | **4 314 B** |
+
+Fonts stay 224 KB self-hosted across cyrillic + latin subsets, with zero
+third-party requests. JavaScript is 14 KB raw / 4 KB on the wire, deferred and
+non-blocking.
 
 For contrast, the live site autoplays a 6.8 MB hero video during page load and
 carries four more clips of 2.4–6.4 MB, on top of ~600 KB of JavaScript
@@ -222,7 +240,7 @@ scripts/
   build-site.mjs      site.json -> site/index.html   (npm run build)
   build-video.mjs     salon masters -> site/media/video  (needs ffmpeg)
   fetch-fonts.mjs     refresh site/fonts + css/fonts.css
-  serve.mjs           static server; / = v4, /v3/ = previous prototype
+  serve.mjs           static server, brotli/gzip for text; / = v4, /v3/ = v3
 ```
 
 Editing content means editing `site/data/site.json` and running
@@ -249,7 +267,12 @@ build step.
   the masters, neither of which is in the repository. The encoded outputs are
   committed, so this only matters if the crops change.
 - No production performance numbers are recorded here. The figures in §4 are
-  local; measure the deployed candidate separately.
+  transfer sizes measured locally against the same server that runs in
+  production; latency, LCP and Core Web Vitals are not measured and not
+  claimed.
+- `scripts/serve.mjs` compresses per request rather than serving pre-compressed
+  files. That is fine at this traffic level; a CDN or pre-built `.br` artefacts
+  would be the next step if the salon ever needs it.
 
 ## 8 · Screenshots
 

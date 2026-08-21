@@ -1,6 +1,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -31,6 +32,22 @@ const TYPES = {
   ".woff2": "font/woff2",
 };
 
+const COMPRESSIBLE = new Set([".html", ".css", ".js", ".json", ".svg"]);
+
+const BROTLI = {
+  params: {
+    [zlib.constants.BROTLI_PARAM_QUALITY]: 5,
+    [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+  },
+};
+
+const pickEncoding = (header = "") => {
+  const accepted = String(header).toLowerCase();
+  if (accepted.includes("br")) return "br";
+  if (accepted.includes("gzip")) return "gzip";
+  return null;
+};
+
 const server = http.createServer((req, res) => {
   try {
     const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
@@ -51,11 +68,27 @@ const server = http.createServer((req, res) => {
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
-    res.writeHead(200, {
+    const headers = {
       "Content-Type": TYPES[ext] || "application/octet-stream",
       "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=86400",
-    });
-    fs.createReadStream(filePath).pipe(res);
+    };
+
+    // Text assets ship uncompressed otherwise — the HTML alone is ~115 KB raw
+    // against ~15 KB gzipped. Media and fonts are already compressed formats,
+    // so re-compressing them only burns CPU.
+    const encoding = COMPRESSIBLE.has(ext) ? pickEncoding(req.headers["accept-encoding"]) : null;
+    if (encoding) {
+      headers["Content-Encoding"] = encoding;
+      headers["Vary"] = "Accept-Encoding";
+    }
+
+    res.writeHead(200, headers);
+    const stream = fs.createReadStream(filePath);
+    if (!encoding) {
+      stream.pipe(res);
+      return;
+    }
+    stream.pipe(encoding === "br" ? zlib.createBrotliCompress(BROTLI) : zlib.createGzip()).pipe(res);
   } catch {
     res.writeHead(500).end("Server error");
   }
