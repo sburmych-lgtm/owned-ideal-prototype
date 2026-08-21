@@ -1,386 +1,636 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="OWNED — салон експертизи волосся у Львові (Safe Town). Кучері, сивина, складний колір. Запис онлайн." />
-  <meta name="theme-color" content="#16181A" />
-  <title>OWNED — експертиза волосся · Львів</title>
-  <link rel="icon" href="media/monogram.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/motion.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>OWNED — простір, де головний пріоритет — ти · Львів</title>
+<meta name="description" content="OWNED — простір краси у Львові, ЖК Safe Town. Кучеряві стрижки, інтеграція сивини, складні фарбування та професійне відновлення волосся. Прозорий прайс і запис за один крок." />
+<meta name="theme-color" content="#16181A" />
+<meta name="color-scheme" content="light dark" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="uk_UA" />
+<meta property="og:title" content="OWNED — простір, де головний пріоритет — ти" />
+<meta property="og:description" content="Кучеряві стрижки, інтеграція сивини, складний колір і відновлення. Львів, ЖК Safe Town." />
+<meta property="og:image" content="media/hero/hero.jpg" />
+<link rel="icon" href="media/monogram.svg" type="image/svg+xml" />
+<link rel="preload" as="font" type="font/woff2" href="fonts/manrope-400700-cyrillic.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="fonts/prata-400-cyrillic.woff2" crossorigin />
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet" href="css/motion.css" />
+<link rel="preload" as="image" href="media/hero/hero.jpg" fetchpriority="high" />
+<script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="is-loading">
-  <a class="skip-link" href="#main">Перейти до змісту</a>
 
-  <header class="site-header" data-header>
-    <div class="site-header__inner">
-      <a class="logo" href="#top" aria-label="OWNED — нагору">
-        <img class="logo__mark" src="media/monogram.svg" width="28" height="28" alt="" />
-        <span class="logo__word">OWNED</span>
-      </a>
+<body id="top">
+<a class="skip" href="#main">Перейти до вмісту</a>
 
-      <nav class="nav-desktop" aria-label="Основна">
-        <a href="#results">Результати</a>
-        <a href="#services">Послуги</a>
-        <a href="#space">Простір</a>
-        <a href="#founder">Галина</a>
-        <a class="btn btn--small btn--solid" href="#booking">Записатися</a>
-      </nav>
+<!-- ─────────────────────────  HEADER  ───────────────────────── -->
+<header class="bar" data-bar>
+  <div class="bar__in shell-wide">
+    <a class="brand" href="#top">
+      <img class="brand__mark" src="media/monogram.svg" width="26" height="26" alt="" />
+      <span class="brand__word">OWNED</span>
+      <span class="brand__place">Львів</span>
+    </a>
 
-      <div class="nav-mobile-actions">
-        <a class="btn btn--small btn--ghost" href="#booking">Запис</a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-nav-toggle>
-          <span class="nav-toggle__bars" aria-hidden="true"></span>
-          <span class="visually-hidden">Меню</span>
-        </button>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-      <a href="#results">Результати</a>
+    <nav class="nav" aria-label="Основна навігація">
+      <a href="#results">Роботи</a>
       <a href="#services">Послуги</a>
+      <a href="#masters">Майстри</a>
       <a href="#space">Простір</a>
-      <a href="#founder">Засновниця</a>
-      <a href="#booking">Записатися</a>
+      <a href="#reviews">Відгуки</a>
+    </nav>
+
+    <div class="bar__act">
+      <a class="tel mono" href="tel:+380971484596">097 148 45 96</a>
+      <a class="btn btn--neon btn--sm" href="#booking">Записатися</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" data-burger>
+        <span class="burger__bars" aria-hidden="true"><i></i><i></i></span>
+        <span class="vh">Меню</span>
+      </button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main id="main">
-    <!-- HERO: brand lives inside the photograph -->
-    <section class="hero" id="top" data-hero>
-      <div class="hero__media" aria-hidden="true">
-        <img class="hero__photo" src="media/web/hero-hair.jpg" alt="" width="1200" height="1600" fetchpriority="high" />
-        <div class="hero__veil"></div>
+<div class="drawer" id="drawer" data-drawer hidden>
+  <nav class="drawer__nav" aria-label="Мобільна навігація">
+    <a href="#results"><span class="mono">01</span> Роботи</a>
+    <a href="#services"><span class="mono">02</span> Послуги</a>
+    <a href="#masters"><span class="mono">03</span> Майстри</a>
+    <a href="#space"><span class="mono">04</span> Простір</a>
+    <a href="#reviews"><span class="mono">05</span> Відгуки</a>
+    <a href="#booking"><span class="mono">06</span> Записатися</a>
+  </nav>
+  <div class="drawer__foot">
+    <a class="btn btn--neon btn--block" href="#booking">Записатися</a>
+    <div class="drawer__contacts">
+      <a class="mono" href="tel:+380971484596">097 148 45 96</a>
+      <a href="https://www.instagram.com/owned.lviv" target="_blank" rel="noopener noreferrer">@owned.lviv</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ─────────────────────────  HERO  ───────────────────────── -->
+  <section class="hero surface--ink" aria-labelledby="hero-h">
+    <div class="hero__media">
+      <img src="media/hero/hero.jpg" width="1440" height="810" alt="" fetchpriority="high" decoding="async" />
+      <span class="hero__scrim" aria-hidden="true"></span>
+    </div>
+
+    <div class="hero__in shell">
+      <p class="eyebrow eyebrow--neon">Львів · ЖК Safe&nbsp;Town · з 2026</p>
+      <h1 class="display" id="hero-h">Простір, де головний пріоритет&nbsp;— <em>ти</em></h1>
+      <p class="lead hero__lead">Кучеряві стрижки, інтеграція сивини, складний колір і професійне відновлення — без поспіху й без шаблонів.</p>
+      <div class="hero__cta">
+        <a class="btn btn--neon" href="#booking">Записатися</a>
+        <a class="btn btn--line-inv" href="#results">Дивитись роботи</a>
+      </div>
+    </div>
+
+    <p class="hero__hint mono" aria-hidden="true">Гортайте</p>
+  </section>
+
+  <!-- ─────────────────────────  PROOF STRIP  ───────────────────────── -->
+  <section class="proof surface--bone" aria-label="Коротко про простір">
+    <ul class="proof__row shell-wide">
+      <li><b class="mono">8</b><span>майстринь вузького профілю</span></li>
+      <li><b class="mono">17+</b><span>років засновниці в індустрії</span></li>
+      <li><b class="mono">70%</b><span>команди — з перших років</span></li>
+      <li><b class="mono">TOP&nbsp;100</b><span>номінантка премії, 2026</span></li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────────────  01 · НАПРЯМИ  ───────────────────────── -->
+  <section class="section surface--paper" id="focus" aria-labelledby="focus-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">01</span><i></i><span class="eyebrow">Напрями</span></p>
+
+      <div class="lede-grid">
+        <h2 class="h2 reveal" id="focus-h">Чотири речі, заради яких сюди їдуть з іншого кінця міста</h2>
+        <p class="lead reveal">Спочатку слухаємо волосся й запит — і тільки потім ріжемо, фарбуємо та відновлюємо. Краса народжується з поваги до власної природи, а не з агресивної зміни під чужі тренди.</p>
       </div>
 
-      <div class="hero__content">
-        <p class="eyebrow eyebrow--on-dark">
-          <span class="neon-line" aria-hidden="true"></span>
-          Львів · Safe Town
-        </p>
-        <h1 class="hero__title">
-          Кучері, сивина<br />і складний колір.
-        </h1>
-        <p class="hero__lead">
-          Там, де ти стаєш кращою. Спочатку слухаємо волосся,<br class="hide-mobile" />
-          потім ріжемо, фарбуємо й відновлюємо.
-        </p>
-        <div class="hero__cta">
-          <a class="btn btn--solid btn--lg" href="#booking" data-hero-cta>Записатися</a>
-          <a class="btn btn--ghost-light btn--lg" href="#results">Дивитись роботи</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROOF METRICS -->
-    <section class="metrics" aria-label="Довіра" data-stagger>
-      <div class="metrics__grid">
-        <div class="metrics__item" data-reveal="metric" style="--i:0">
-          <span class="metrics__num">4.9</span>
-          <span class="metrics__label">рейтинг Google</span>
-        </div>
-        <div class="metrics__item" data-reveal="metric" style="--i:1">
-          <span class="metrics__num">480+</span>
-          <span class="metrics__label">відгуків</span>
-        </div>
-        <div class="metrics__item" data-reveal="metric" style="--i:2">
-          <span class="metrics__num">0&nbsp;₴</span>
-          <span class="metrics__label">первинна консультація</span>
-        </div>
-        <div class="metrics__item metrics__item--wide" data-reveal="metric" style="--i:3">
-          <span class="metrics__num metrics__num--sm">Safe Town</span>
-          <span class="metrics__label">Львів · щодня 10:00–20:00</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- RESULTS / BA -->
-    <section class="section section--paper" id="results">
-      <div class="section__head" data-reveal="copy">
-        <p class="eyebrow">Результати</p>
-        <h2>Роботи, які видно<br />без ретуші</h2>
-        <p class="section__lead">Перетягніть лінію. Кожен кейс — реальна зйомка в салоні OWNED.</p>
-      </div>
-
-      <div class="ba" data-ba data-reveal="rise">
-        <div class="ba__stage" data-ba-stage>
-          <div class="ba__layer ba__layer--after" data-ba-after></div>
-          <div class="ba__layer ba__layer--before" data-ba-before></div>
-          <div class="ba__handle" data-ba-handle style="--pos: 52%">
-            <span class="ba__knob" aria-hidden="true"></span>
-          </div>
-          <span class="ba__tag ba__tag--before">До</span>
-          <span class="ba__tag ba__tag--after">Після</span>
-          <input class="ba__range" type="range" min="0" max="100" value="52" aria-label="Порівняти до і після" data-ba-range />
-        </div>
-
-        <div class="ba__meta">
-          <p class="ba__case-eyebrow eyebrow">Кейс <span data-ba-index>01</span> / <span data-ba-total>06</span></p>
-          <h3 data-ba-title>Форма і гладкість</h3>
-          <p class="ba__desc" data-ba-desc>Текстура до/після · полірування</p>
-          <p class="ba__legal">Індивідуальний результат. Фото знято в OWNED.</p>
-
-          <div class="ba__thumbs" role="tablist" aria-label="Кейси" data-ba-thumbs></div>
-
-          <a class="btn btn--text" href="#booking">Хочу схожий результат →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- STRIP: more proof photography -->
-    <section class="filmstrip" aria-label="Атмосфера робіт" data-stagger>
-      <figure class="filmstrip__item" data-reveal="image" style="--i:0">
-        <img src="media/web/hero-hair.jpg" alt="Результат кольору в салоні OWNED біля вивіски" width="800" height="1000" loading="lazy" />
-      </figure>
-      <figure class="filmstrip__item" data-reveal="image" style="--i:1">
-        <img src="media/web/curly-result.jpg" alt="Кучеряве волосся після роботи майстра" width="800" height="1000" loading="lazy" />
-      </figure>
-      <figure class="filmstrip__item" data-reveal="image" style="--i:2">
-        <img src="media/web/nails.jpg" alt="Манікюр у OWNED" width="800" height="1000" loading="lazy" />
-      </figure>
-      <figure class="filmstrip__item filmstrip__item--dark" data-reveal="image" style="--i:3">
-        <img src="media/web/award-trust.jpg" alt="Нагорода та довіра салону" width="800" height="1000" loading="lazy" />
-      </figure>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="section section--bone" id="services">
-      <div class="section__head" data-reveal="copy">
-        <p class="eyebrow">Послуги</p>
-        <h2>Спершу волосся.<br />Далі — увесь образ.</h2>
-        <p class="section__lead">Acquisition wedge — складна робота з волоссям. Нігті, брови й макіяж у тому ж просторі.</p>
-      </div>
-
-      <div class="ledger" role="list" data-stagger>
-        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:0">
-          <span class="ledger__num" aria-hidden="true">01</span>
-          <div class="ledger__body">
-            <h3>Волосся</h3>
-            <p>Кучері, grey blending, airtouch / balayage, вихід із чорного, Tokyo recovery, нарощення.</p>
-          </div>
-          <p class="ledger__price mono">від 700 ₴</p>
-          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
-        </article>
-        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:1">
-          <span class="ledger__num" aria-hidden="true">02</span>
-          <div class="ledger__body">
-            <h3>Нігті</h3>
-            <p>Манікюр і педикюр із покриттям та зміцненням.</p>
-          </div>
-          <p class="ledger__price mono">від 500 ₴</p>
-          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
-        </article>
-        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:2">
-          <span class="ledger__num" aria-hidden="true">03</span>
-          <div class="ledger__body">
-            <h3>Брови і вії</h3>
-            <p>Ламінування, фарбування, довготривала укладка брів.</p>
-          </div>
-          <p class="ledger__price mono">від 300 ₴</p>
-          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
-        </article>
-        <article class="ledger__row" role="listitem" data-reveal="fade" style="--i:3">
-          <span class="ledger__num" aria-hidden="true">04</span>
-          <div class="ledger__body">
-            <h3>Макіяж</h3>
-            <p>Образ під подію — акуратність і природність у тій же логіці.</p>
-          </div>
-          <p class="ledger__price mono">від 900 ₴</p>
-          <a class="ledger__cta btn btn--text" href="#booking">Обрати →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- VISIT STEPS -->
-    <section class="section section--ink" id="visit">
-      <div class="section__head section__head--inv" data-reveal="copy">
-        <p class="eyebrow eyebrow--on-dark">Візит</p>
-        <h2>Чотири кроки<br />до результату</h2>
-      </div>
-      <ol class="steps" data-stagger>
-        <li data-reveal="fade" style="--i:0">
-          <span class="steps__num">01</span>
-          <h3>Заявка</h3>
-          <p>Залишаєте номер тут або пишете в Instagram.</p>
+      <ol class="focus">
+        <li class="focus__item reveal">
+          <span class="focus__n mono">01</span>
+          <h3 class="h3">Кучеряві стрижки</h3>
+          <p>Вузька спеціалізація, якої майже немає у Львові. Форма будується з урахуванням кучерявого методу та природного завитка.</p>
         </li>
-        <li data-reveal="fade" style="--i:1">
-          <span class="steps__num">02</span>
-          <h3>Консультація</h3>
-          <p>Дивимось стан волосся й варіанти. Безкоштовно.</p>
+        <li class="focus__item reveal">
+          <span class="focus__n mono">02</span>
+          <h3 class="h3">Інтеграція сивини</h3>
+          <p>«Шиття сивини» — делікатне вплітання відтінків замість суцільного фарбування. Мета — природний результат і менш помітне відростання.</p>
         </li>
-        <li data-reveal="fade" style="--i:2">
-          <span class="steps__num">03</span>
-          <h3>Візит</h3>
-          <p>Погоджуємо очікуваний результат до початку роботи.</p>
+        <li class="focus__item reveal">
+          <span class="focus__n mono">03</span>
+          <h3 class="h3">Складні фарбування</h3>
+          <p>Airtouch, балаяж, тотал блонд, вихід із чорного, складні корені. Рішення залежить від стану волосся та історії фарбування.</p>
         </li>
-        <li data-reveal="fade" style="--i:3">
-          <span class="steps__num">04</span>
-          <h3>Догляд</h3>
-          <p>Підбираємо домашню систему, щоб форма трималась.</p>
+        <li class="focus__item reveal">
+          <span class="focus__n mono">04</span>
+          <h3 class="h3">Відновлення волосся</h3>
+          <p>Професійні системи Tokio INKARAMI, BRAE, LANZA, VIART. Протокол підбирається під запит: зволоження, розгладження, блиск.</p>
         </li>
       </ol>
-    </section>
 
-    <!-- SPACE + NEON SIGNATURE -->
-    <section class="section section--paper" id="space">
-      <div class="space">
-        <div class="space__copy" data-reveal="copy">
-          <p class="eyebrow">Простір</p>
-          <h2>OWNED у Safe Town</h2>
-          <p>Світло дзеркал, дерево, мох і неонова вивіска — матеріальний знак бренду. Саме звідси на сайті береться акцент: неон як світло в кімнаті, не як «ефект».</p>
-          <p class="space__slogan">«Там, де ти — головний пріоритет»</p>
-          <a class="btn btn--text" href="#location">Як дістатися →</a>
-        </div>
+      <p class="section__more"><a class="link-arrow" href="#services">Послуги та вартість</a></p>
+    </div>
+  </section>
 
-        <div class="space__media">
-          <figure class="space__frame space__frame--photo" data-reveal="image">
-            <img src="media/web/space-interior.jpg" alt="Інтер’єр салону OWNED: дзеркала з підсвіткою" width="1200" height="900" loading="lazy" />
-          </figure>
-          <figure class="space__frame space__frame--neon" data-reveal="image" style="--i:1">
-            <video
-              class="space__video"
-              src="media/logo-ambient.mp4"
-              poster="media/web/salon-logo.jpg"
-              muted
-              playsinline
-              loop
-              autoplay
-              preload="metadata"
-              aria-label="Неонова вивіска OWNED у салоні"
-            ></video>
-            <figcaption class="space__cap mono">Neon · living brand mark</figcaption>
-          </figure>
-        </div>
+  <!-- ─────────────────────────  02 · РОБОТИ (BA)  ───────────────────────── -->
+  <section class="section surface--ink" id="results" aria-labelledby="results-h" data-compare-root>
+    <div class="shell">
+      <p class="masthead"><span class="mono">02</span><i></i><span class="eyebrow">Роботи</span></p>
+
+      <div class="lede-grid">
+        <h2 class="h2 reveal" id="results-h">Одна робота у фокусі</h2>
+        <p class="lead reveal">Кожна робота — конкретна послуга з прайсу, з реальною тривалістю. Оберіть ту, що відгукується.</p>
       </div>
-    </section>
 
-    <!-- REVIEWS -->
-    <section class="section section--bone" id="reviews">
-      <div class="section__head" data-reveal="copy">
-        <p class="eyebrow">Відгуки</p>
-        <h2>Голоси клієнток</h2>
-      </div>
-      <div class="reviews" data-stagger>
-        <figure class="review" data-reveal="fade" style="--i:0">
-          <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
-          <blockquote>«Нарешті підстригли кучері так, щоб вони жили своїм життям.»</blockquote>
-          <figcaption><span class="mono">Олена</span> · стрижка · Google</figcaption>
-        </figure>
-        <figure class="review" data-reveal="fade" style="--i:1">
-          <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
-          <blockquote>«Сивину не замальовували шапкою — зробили м’який grey blending.»</blockquote>
-          <figcaption><span class="mono">Марія</span> · колір · Google</figcaption>
-        </figure>
-        <figure class="review" data-reveal="fade" style="--i:2">
-          <div class="review__stars mono" aria-label="5 з 5">★★★★★</div>
-          <blockquote>«Пояснили план на кілька візитів і чесно сказали, чого не варто чекати за один раз.»</blockquote>
-          <figcaption><span class="mono">Ірина</span> · складний колір · Google</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- FOUNDER -->
-    <section class="section section--ink" id="founder">
-      <div class="founder">
-        <figure class="founder__portrait" data-reveal="image">
-          <img src="media/web/founder-halyna.jpg" alt="Галина — засновниця салону OWNED" width="900" height="1200" loading="lazy" />
-        </figure>
-        <div class="founder__copy" data-reveal="copy">
-          <p class="eyebrow eyebrow--on-dark">Засновниця</p>
-          <h2>Галина</h2>
-          <p class="founder__thesis">Краса без шаблону: слухаємо волосся, а не тренд сезону.</p>
-          <ul class="founder__points">
-            <li>Форма під текстуру, не проти неї</li>
-            <li>Колір як система візитів, не «сюрприз»</li>
-            <li>Чесна консультація до ножиць і фарби</li>
-          </ul>
-          <a class="btn btn--ghost-light" href="#booking">Записатися до команди</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT + BOOKING -->
-    <section class="section section--paper contact" id="location">
-      <div class="contact__grid">
-        <div class="contact__info" data-reveal="copy">
-          <p class="eyebrow">Локація</p>
-          <h2>Safe Town, Львів</h2>
-          <p class="mono contact__line">Пн–Нд · 10:00–20:00</p>
-          <p>Напишіть адміністратору — надішлемо точний корпус, парковку й орієнтир по Safe Town.</p>
-          <div class="contact__links">
-            <a class="btn btn--text" href="https://instagram.com/" rel="noopener" target="_blank">Instagram →</a>
-            <a class="btn btn--text" href="tel:+380000000000">Подзвонити →</a>
+      <div class="ba">
+        <!-- viewer -->
+        <figure class="ba__stage">
+          <div class="ba__frame" data-compare>
+            <img class="ba__img ba__img--before" data-ba-before src="media/compare/total-blond-before.jpg" width="900" height="1200" alt="Тотал блонд — до" decoding="async" />
+            <div class="ba__after" data-ba-clip>
+              <img class="ba__img" data-ba-after src="media/compare/total-blond-after.jpg" width="900" height="1200" alt="Тотал блонд — після" decoding="async" />
+            </div>
+            <span class="ba__tag ba__tag--l" aria-hidden="true">До</span>
+            <span class="ba__tag ba__tag--r" aria-hidden="true">Після</span>
+            <span class="ba__line" data-ba-line aria-hidden="true"><i class="ba__knob"></i></span>
+            <label class="vh" for="ba-range">Порівняння «до» і «після»</label>
+            <input class="ba__range" id="ba-range" type="range" min="0" max="100" value="50" step="1" data-ba-range
+                   aria-label="Порівняння «до» і «після»: посуньте, щоб відкрити результат" />
           </div>
-          <figure class="contact__side-photo" data-reveal="image">
-            <img src="media/web/team-curly.jpg" alt="Команда OWNED за роботою з кучерявим волоссям" width="900" height="700" loading="lazy" />
-          </figure>
+          <figcaption class="ba__cap mono" data-ba-caption>Перетягніть смугу або скористайтесь стрілками ← →</figcaption>
+        </figure>
+
+        <!-- meta -->
+        <div class="ba__meta" aria-live="polite">
+          <p class="eyebrow eyebrow--neon" data-ba-cat>Колористика</p>
+          <h3 class="h2 h2--sm" data-ba-title>Тотал блонд, складні корені</h3>
+          <p class="ba__note" data-ba-note>Повне полотно виводиться у чистий блонд разом зі складними коренями. Вартість залежить від вихідної бази, довжини, густоти та історії фарбування.</p>
+
+          <dl class="facts">
+            <div><dt>Тривалість</dt><dd class="mono" data-ba-dur>300 хв</dd></div>
+            <div><dt>Вартість</dt><dd class="mono accent" data-ba-price>від 5 500 грн</dd></div>
+          </dl>
+
+          <div class="ba__cta">
+            <a class="btn btn--neon" href="#booking">Записатися</a>
+            <a class="btn btn--line-inv" href="#services">Усі послуги</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- case picker -->
+      <div class="cases">
+        <p class="cases__label eyebrow">Інші роботи <span class="mono" data-ba-count>1 / 6</span></p>
+        <ul class="cases__rail" aria-label="Оберіть роботу">
+          <li><button class="case is-on" type="button" aria-pressed="true" data-case
+              data-id="total-blond" data-title="Тотал блонд, складні корені" data-cat="Колористика"
+              data-dur="300 хв" data-price="від 5 500 грн"
+              data-note="Повне полотно виводиться у чистий блонд разом зі складними коренями. Вартість залежить від вихідної бази, довжини, густоти та історії фарбування."
+              data-before="media/compare/total-blond-before.jpg" data-after="media/compare/total-blond-after.jpg">
+              <span class="case__ph"><img src="media/compare/total-blond-after.jpg" width="900" height="1200" alt="" loading="lazy" decoding="async" /></span>
+              <span class="case__t">Тотал блонд</span><span class="case__c">Колористика</span></button></li>
+
+          <li><button class="case" type="button" aria-pressed="false" data-case
+              data-id="exit-black" data-title="Вихід із чорного" data-cat="Колористика"
+              data-dur="420 хв" data-price="від 10 000 грн"
+              data-note="Найдовша робота в прайсі. Накопичений темний пігмент виводиться поетапно — рішення завжди залежить від історії фарбування та стану волосся."
+              data-before="media/compare/exit-black-before.jpg" data-after="media/compare/exit-black-after.jpg">
+              <span class="case__ph"><img src="media/compare/exit-black-after.jpg" width="900" height="1200" alt="" loading="lazy" decoding="async" /></span>
+              <span class="case__t">Вихід із чорного</span><span class="case__c">Колористика</span></button></li>
+
+          <li><button class="case" type="button" aria-pressed="false" data-case
+              data-id="tokio" data-title="Tokio INKARAMI" data-cat="Відновлення"
+              data-dur="90 хв" data-price="від 2 800 грн"
+              data-note="Японська багатокомпонентна система глибокого відновлення. Протокол адаптується під запит: зволоження, розгладження, зменшення пухнастості або поєднання."
+              data-before="media/compare/tokio-before.jpg" data-after="media/compare/tokio-after.jpg">
+              <span class="case__ph"><img src="media/compare/tokio-after.jpg" width="900" height="1200" alt="" loading="lazy" decoding="async" /></span>
+              <span class="case__t">Tokio INKARAMI</span><span class="case__c">Відновлення</span></button></li>
+
+          <li><button class="case" type="button" aria-pressed="false" data-case
+              data-id="kids" data-title="Дитяча стрижка" data-cat="Стрижки"
+              data-dur="30 хв" data-price="500 грн"
+              data-note="Окрема позиція прайсу для найменших гостей — спокійно, у своєму темпі, без поспіху."
+              data-before="media/compare/kids-before.jpg" data-after="media/compare/kids-after.jpg">
+              <span class="case__ph"><img src="media/compare/kids-after.jpg" width="900" height="1200" alt="" loading="lazy" decoding="async" /></span>
+              <span class="case__t">Дитяча стрижка</span><span class="case__c">Стрижки</span></button></li>
+
+          <li><button class="case" type="button" aria-pressed="false" data-case
+              data-id="manicure" data-title="Манікюр: зняття, чистка, покриття" data-cat="Нігтьовий сервіс"
+              data-dur="105 хв" data-price="від 1 100 грн"
+              data-note="Повний комплекс: зняття попереднього покриття, апаратна чистка та нове покриття під кутикулу."
+              data-before="media/compare/manicure-before.jpg" data-after="media/compare/manicure-after.jpg">
+              <span class="case__ph"><img src="media/compare/manicure-after.jpg" width="900" height="1200" alt="" loading="lazy" decoding="async" /></span>
+              <span class="case__t">Манікюр</span><span class="case__c">Нігтьовий сервіс</span></button></li>
+
+          <li><button class="case" type="button" aria-pressed="false" data-case
+              data-id="pedicure" data-title="Педикюр: зняття, чистка, покриття, п'ятки" data-cat="Нігтьовий сервіс"
+              data-dur="85 хв" data-price="від 1 200 грн"
+              data-note="Комплексна робота зі стопою: зняття, чистка, обробка п'ят і покриття."
+              data-before="media/compare/pedicure-before.jpg" data-after="media/compare/pedicure-after.jpg">
+              <span class="case__ph"><img src="media/compare/pedicure-after.jpg" width="900" height="1200" alt="" loading="lazy" decoding="async" /></span>
+              <span class="case__t">Педикюр</span><span class="case__c">Нігтьовий сервіс</span></button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  03 · ПОСЛУГИ  ───────────────────────── -->
+  <section class="section surface--bone" id="services" aria-labelledby="services-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">03</span><i></i><span class="eyebrow">Послуги</span></p>
+
+      <div class="lede-grid">
+        <h2 class="h2 reveal" id="services-h">Прозора вартість, без сюрпризів на касі</h2>
+        <p class="lead reveal">Фінальна вартість залежить від бази, довжини, густоти та історії фарбування — тому складні роботи ми завжди прораховуємо на консультації.</p>
+      </div>
+
+      <div class="price">
+        <section class="price__grp reveal" aria-labelledby="g-cut">
+          <h3 class="h3" id="g-cut">Стрижки, укладки та зачіски</h3>
+          <dl class="price__list">
+            <div><dt>Жіноча стрижка</dt><dd class="mono">від 1 100 грн</dd></div>
+            <div><dt>Кучерява стрижка</dt><dd class="mono muted">за консультацією</dd></div>
+            <div><dt>Чоловіча стрижка</dt><dd class="mono">від 600 грн</dd></div>
+            <div><dt>Дитяча стрижка до 6 років</dt><dd class="mono">500 грн</dd></div>
+          </dl>
+        </section>
+
+        <section class="price__grp reveal" aria-labelledby="g-col">
+          <h3 class="h3" id="g-col">Колористика</h3>
+          <dl class="price__list">
+            <div><dt>Складне фарбування</dt><dd class="mono">від 7 000 грн</dd></div>
+            <div><dt>Вихід із чорного</dt><dd class="mono">від 10 000 грн</dd></div>
+            <div><dt>Тотал блонд, складні корені</dt><dd class="mono">від 5 500 грн</dd></div>
+            <div><dt>Фарбування коренів у тотал блонд</dt><dd class="mono">від 4 200 грн</dd></div>
+          </dl>
+        </section>
+
+        <section class="price__grp reveal" aria-labelledby="g-care">
+          <h3 class="h3" id="g-care">Відновлення волосся</h3>
+          <dl class="price__list">
+            <div><dt>Tokio INKARAMI</dt><dd class="mono">від 2 800 грн</dd></div>
+            <div><dt>Tokio INKARAMI 2D</dt><dd class="mono">від 3 000 грн</dd></div>
+            <div><dt>Tokio INKARAMI 3D</dt><dd class="mono">від 3 400 грн</dd></div>
+            <div><dt>Tokio INKARAMI 4D</dt><dd class="mono">від 3 700 грн</dd></div>
+          </dl>
+        </section>
+
+        <section class="price__grp reveal" aria-labelledby="g-nail">
+          <h3 class="h3" id="g-nail">Нігтьовий сервіс</h3>
+          <dl class="price__list">
+            <div><dt>Манікюр: зняття, чистка, покриття</dt><dd class="mono">від 1 100 грн</dd></div>
+            <div><dt>Педикюр: зняття, чистка, покриття, п'ятки</dt><dd class="mono">від 1 200 грн</dd></div>
+          </dl>
+          <p class="price__note">Брови, вії, макіяж і нарощування волосся — уточнюйте в адміністраторки.</p>
+        </section>
+      </div>
+
+      <p class="section__more">
+        <a class="btn btn--solid" href="https://bookon.ua/s/lite/owned.lviv" target="_blank" rel="noopener noreferrer">Повний перелік і онлайн-запис</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  04 · МАЙСТРИ  ───────────────────────── -->
+  <section class="section surface--paper" id="masters" aria-labelledby="masters-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">04</span><i></i><span class="eyebrow">Майстри</span></p>
+
+      <div class="lede-grid">
+        <h2 class="h2 reveal" id="masters-h">Вісім спеціалісток вузького профілю</h2>
+        <p class="lead reveal">70% команди працює у просторі з перших років — результат авторської внутрішньої школи навчання. Кожна веде свій напрям, а не «все потроху».</p>
+      </div>
+
+      <ul class="team">
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/sasha_curly.jpg" width="1086" height="1448" alt="Саша — перукар-стиліст" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Саша</b></span>
+          <span class="mate__role">Перукар-стиліст</span>
+          <span class="mate__spec">Кучеряві стрижки та інтеграція сивини</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/halya_hair.jpg" width="1024" height="1536" alt="Галя — перукар-універсал" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Галя</b><i class="mono">12 років</i></span>
+          <span class="mate__role">Перукар-універсал</span>
+          <span class="mate__spec">Тотал блонд</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/anya_hair.jpg" width="1024" height="1536" alt="Аня — перукар" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Аня</b><i class="mono">6+ років</i></span>
+          <span class="mate__role">Перукар</span>
+          <span class="mate__spec">Нарощування волосся</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/tanya_colorist.jpg" width="1024" height="1536" alt="Таня — керуюча, майстер-колорист" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Таня</b><i class="mono">2 роки</i></span>
+          <span class="mate__role">Керуюча, майстер-колорист</span>
+          <span class="mate__spec">Складні техніки фарбування</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/natalya_brows.jpg" width="1024" height="1536" alt="Наталя — майстриня брів та вій" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Наталя</b><i class="mono">6 років</i></span>
+          <span class="mate__role">Майстриня брів та вій</span>
+          <span class="mate__spec">Брови</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/natalya_nails.jpg" width="1086" height="1448" alt="Наталя — майстриня манікюру та педикюру" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Наталя</b><i class="mono">9 років</i></span>
+          <span class="mate__role">Майстриня манікюру та педикюру</span>
+          <span class="mate__spec">Подологія</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/viktoria_nails.jpg" width="3024" height="4032" alt="Вікторія — майстриня манікюру" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Вікторія</b><i class="mono">1 рік</i></span>
+          <span class="mate__role">Майстриня манікюру</span>
+          <span class="mate__spec">Нюд і лаконічність</span>
+        </li>
+        <li class="mate reveal">
+          <span class="mate__ph"><img src="media/masters/anya_admin.jpg" width="1024" height="1536" alt="Аня — старша адміністраторка" loading="lazy" decoding="async" /></span>
+          <span class="mate__hd"><b>Аня</b><i class="mono">2,5 роки</i></span>
+          <span class="mate__role">Старша адміністраторка</span>
+          <span class="mate__spec">Спокійний таймінг візиту</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  05 · ПРОСТІР І ПРОЦЕС  ───────────────────────── -->
+  <section class="section surface--ink" id="space" aria-labelledby="space-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">05</span><i></i><span class="eyebrow">Простір і процес</span></p>
+
+      <div class="lede-grid">
+        <h2 class="h2 reveal" id="space-h">Як це виглядає зсередини</h2>
+        <p class="lead reveal">Миття, діагностика, колір, кучерява стрижка, укладка. Знято у звичайні робочі дні — без постановки й без стокових кадрів.</p>
+      </div>
+
+      <ul class="film">
+        <li class="film__cell film__cell--big reveal">
+          <img src="media/space/space-01.jpg" width="780" height="1386" alt="Зал простору OWNED з неоновою вивіскою" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">01</i>Робочий день</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c2.jpg" width="900" height="1600" alt="Кучерява стрижка біля дзеркала" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">02</i>Кучерява стрижка</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c3.jpg" width="900" height="1600" alt="Живий завиток після укладки" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">03</i>Живий завиток</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c9.jpg" width="760" height="1352" alt="Нанесення кольору на пасма" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">04</i>Нанесення кольору</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c1.jpg" width="900" height="1600" alt="Довжина та блонд після фарбування" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">05</i>Довжина і блонд</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c10.jpg" width="760" height="1352" alt="Насичений відтінок волосся" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">06</i>Насичений відтінок</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c6.jpg" width="900" height="1600" alt="Робота з вологим волоссям" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">07</i>Робота з вологим волоссям</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c5.jpg" width="900" height="1600" alt="Волосся одразу після мийки" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">08</i>Після мийки</span>
+        </li>
+        <li class="film__cell reveal">
+          <img src="media/work/c7.jpg" width="900" height="1600" alt="Робоче місце майстрині" loading="lazy" decoding="async" />
+          <span class="film__cap"><i class="mono">09</i>Робоче місце</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  06 · ВІДГУКИ  ───────────────────────── -->
+  <section class="section surface--bone" id="reviews" aria-labelledby="reviews-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">06</span><i></i><span class="eyebrow">Відгуки</span></p>
+
+      <div class="lede-grid">
+        <h2 class="h2 reveal" id="reviews-h">Що пишуть у Google</h2>
+        <p class="lead reveal">Відгуки з Google-профілю простору — без редагування й без відбору «зручних».</p>
+      </div>
+      <p class="rail-hint mono" aria-hidden="true">Гортайте вбік →</p>
+
+      <ul class="quotes" tabindex="0" aria-label="Відгуки з Google — на вузьких екранах гортаються вбік">
+        <li class="quote reveal">
+          <blockquote><p>Дуже рада, що обрала це місце для стрижки, майстер Галина просто неймовірна! Зробила все згідно побажань і навіть краще — вирівняла форму зачіски, зробила неймовірний догляд, відповіла на усі запитання і ще й укладка! Просто вау!</p></blockquote>
+          <p class="quote__by"><b>Анна Єльцова</b><span class="mono">Стрижка</span></p>
+        </li>
+        <li class="quote reveal">
+          <blockquote><p>Чудовий салон «Owned» і неймовірна майстриня Галина! Атмосфера дуже затишна, персонал привітний, а чистота просто бездоганна. Галина уважно вислухала мої побажання, дала круті поради та зробила ідеальну стрижку.</p></blockquote>
+          <p class="quote__by"><b>Катя Гичкевич</b><span class="mono">Стрижка та догляд</span></p>
+        </li>
+        <li class="quote reveal">
+          <blockquote><p>Відвідувала салон для кучерявої стрижки з запитом, аби волосся і на рівну укладку можна було носити. Майстер дуже уважна була і врахувала мої побажання, локони ожили, однозначно рекомендую!</p></blockquote>
+          <p class="quote__by"><b>Diana Zozulya</b><span class="mono">Кучерява стрижка</span></p>
+        </li>
+        <li class="quote reveal">
+          <blockquote><p>Саме в Owned я знайшла свою кучеряву майстриню — Олександру. Вона сама має кучеряве волосся і точно знає, як підстригати та вкладати волосся, що в'ється. Завжди порадить перевірений догляд.</p></blockquote>
+          <p class="quote__by"><b>Iryna M</b><span class="mono">Кучерявий метод</span></p>
+        </li>
+        <li class="quote reveal">
+          <blockquote><p>Була на послугах по волоссю у майстра Ані — справжній професіонал своєї справи. Провела детальну консультацію по догляду та процедурах, які дійсно допомогли відновити сухі кінчики.</p></blockquote>
+          <p class="quote__by"><b>Оксана Побережник</b><span class="mono">Відновлення волосся</span></p>
+        </li>
+        <li class="quote reveal">
+          <blockquote><p>Була проїздом у Львові, і знайома порадила звернутися саме у цей салон. Робила манікюр у майстра Наталі — залишилась надзвичайно задоволена. Акуратно, стерильно та гарно!</p></blockquote>
+          <p class="quote__by"><b>Anhelina</b><span class="mono">Манікюр</span></p>
+        </li>
+      </ul>
+
+      <p class="section__more">
+        <a class="link-arrow" href="https://www.google.com/maps/place/OWNED+%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80+%D0%BA%D1%80%D0%B0%D1%81%D0%B8/@49.8235784,23.988621,17z" target="_blank" rel="noopener noreferrer">Відкрити профіль у Google</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  07 · ЗАСНОВНИЦЯ  ───────────────────────── -->
+  <section class="section surface--ink" id="founder" aria-labelledby="founder-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">07</span><i></i><span class="eyebrow">Засновниця</span></p>
+
+      <div class="founder">
+        <figure class="founder__ph reveal">
+          <img src="media/brand/founder.jpg" width="1100" height="1956" alt="Галина Карабин — засновниця простору OWNED" loading="lazy" decoding="async" />
+          <figcaption><b id="founder-h">Галина Карабин</b><span>Засновниця простору OWNED</span></figcaption>
+        </figure>
+
+        <div class="founder__body">
+          <blockquote class="pull reveal">
+            <p>OWNED — це не про поспіх між справами. Це місце внутрішнього «так»: дозволу зупинитись, прислухатись до себе й обрати те, що справді пасує саме тобі.</p>
+          </blockquote>
+
+          <dl class="metrics reveal">
+            <div><dt class="mono">17+</dt><dd><b>років у б'юті-індустрії</b><span>Підприємиця, топ-майстриня, візіонерка простору.</span></dd></div>
+            <div><dt class="mono">70%</dt><dd><b>команди — з перших років</b><span>Показник стабільності, рідкісний для б'юті-ринку. Результат авторської внутрішньої школи навчання майстрів.</span></dd></div>
+            <div><dt class="mono">1</dt><dd><b>день на переїзд студії</b><span>Січень 2026: ребрендинг під час блекаутів, залучений грант і переїзд у Safe Town без втрати клієнтської бази.</span></dd></div>
+          </dl>
+
+          <ul class="tags reveal">
+            <li>Системна допомога дитячому будинку</li>
+            <li>Партнерство подій «Сила впливу» та «Business Mam»</li>
+            <li>Резидентство бізнес-клубів Pro Business і YBS</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="award reveal" aria-label="Визнання">
+        <figure class="award__ph">
+          <img src="media/brand/award.jpg" width="941" height="1672" alt="Диплом номінантки TOP 100, OWNED «простір краси», 20.02.2026" loading="lazy" decoding="async" />
+        </figure>
+        <div class="award__body">
+          <p class="eyebrow eyebrow--neon">Визнання</p>
+          <p class="award__top mono">TOP 100</p>
+          <dl class="award__facts">
+            <div><dt>Що</dt><dd>Диплом номінанта</dd></div>
+            <div><dt>Кому</dt><dd>OWNED «простір краси»</dd></div>
+            <div><dt>Дата</dt><dd class="mono">20.02.2026</dd></div>
+          </dl>
+          <p class="award__note">Диплом стоїть у холі простору — під неоновою вивіскою, поруч із зеленим диваном, де починається кожен візит.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  08 · ЛОКАЦІЯ ТА ЗАПИС  ───────────────────────── -->
+  <section class="section surface--paper" id="booking" aria-labelledby="booking-h">
+    <div class="shell">
+      <p class="masthead"><span class="mono">08</span><i></i><span class="eyebrow">Локація та запис</span></p>
+
+      <div class="book">
+        <!-- left: place + deposit -->
+        <div class="book__side">
+          <h2 class="h2 reveal" id="booking-h">Safe Town, Львів</h2>
+          <p class="lead reveal">вул. Кульпарківська, 96, ЖК Safe Town, Львів</p>
+
+          <div class="book__act reveal">
+            <a class="btn btn--solid" href="https://www.google.com/maps/dir/?api=1&amp;destination=OWNED%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%D0%BA%D1%80%D0%B0%D1%81%D0%B8%2C%20%D0%9A%D1%83%D0%BB%D1%8C%D0%BF%D0%B0%D1%80%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0%2096%2C%20%D0%9B%D1%8C%D0%B2%D1%96%D0%B2&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">Прокласти маршрут</a>
+            <a class="btn btn--line mono" href="tel:+380971484596">097 148 45 96</a>
+          </div>
+          <p class="micro reveal">Маршрут відкриється у Google Maps від вашого поточного місця.</p>
+
+          <div class="deposit reveal">
+            <h3 class="h3">Завдаток</h3>
+            <dl class="price__list">
+              <div><dt>Стрижка</dt><dd class="mono">200 грн</dd></div>
+              <div><dt>Однотонне фарбування</dt><dd class="mono">300 грн</dd></div>
+              <div><dt>Складне фарбування</dt><dd class="mono">500 грн</dd></div>
+              <div><dt>Нарощування волосся</dt><dd class="mono muted">без завдатку</dd></div>
+            </dl>
+            <p class="micro">Якщо ви повідомите про перенесення не пізніше ніж за 24 години до візиту, завдаток збережеться за вами та буде перенесений на наступний запис. За повного скасування з таким завчасним повідомленням завдаток повертається. Якщо до візиту залишається менше ніж 24 години, завдаток не повертається.</p>
+          </div>
         </div>
 
-        <div class="contact__form-wrap" id="booking" data-booking data-reveal="rise">
-          <p class="eyebrow">Запис</p>
-          <h2>Залишити заявку</h2>
-          <p class="section__lead">Час підтвердить адміністратор у відповіді.</p>
+        <!-- right: form -->
+        <div class="book__form reveal">
+          <h3 class="h2 h2--sm">Записатися</h3>
+          <p class="book__intro">Заявка — це ще не підтверджений запис. Адміністраторка звʼяжеться з вами, уточнить деталі та підтвердить час.</p>
+
           <form class="form" data-form novalidate>
-            <label>
-              <span>Ім’я</span>
-              <input name="name" type="text" autocomplete="name" required placeholder="Як до вас звертатись" />
-            </label>
-            <label>
-              <span>Телефон</span>
-              <input name="phone" type="tel" autocomplete="tel" required placeholder="+380…" />
-            </label>
-            <label>
-              <span>Напрям</span>
-              <select name="service" required>
-                <option value="">Оберіть</option>
-                <option>Волосся — стрижка / форма</option>
-                <option>Волосся — колір</option>
-                <option>Волосся — відновлення / нарощення</option>
-                <option>Нігті</option>
-                <option>Брови і вії</option>
+            <div class="field">
+              <label for="f-name">Ім'я</label>
+              <input id="f-name" name="name" type="text" autocomplete="given-name" placeholder="Як до вас звертатися" required />
+              <p class="field__err" data-err-for="f-name" hidden>Вкажіть, будь ласка, ім'я.</p>
+            </div>
+
+            <div class="field">
+              <label for="f-tel">Телефон</label>
+              <input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 __ ___ __ __" required />
+              <p class="field__err" data-err-for="f-tel" hidden>Потрібен номер, щоб підтвердити запис.</p>
+            </div>
+
+            <div class="field">
+              <label for="f-svc">Послуга</label>
+              <select id="f-svc" name="service">
+                <option>Кучерява стрижка</option>
+                <option>Жіноча стрижка</option>
+                <option>Інтеграція сивини</option>
+                <option>Складне фарбування</option>
+                <option>Тотал блонд</option>
+                <option>Вихід із чорного</option>
+                <option>Відновлення волосся</option>
+                <option>Манікюр</option>
+                <option>Педикюр</option>
+                <option>Брови та вії</option>
                 <option>Макіяж</option>
-                <option>Консультація</option>
+                <option>Нарощування волосся</option>
+                <option>Ще не визначилась</option>
               </select>
-            </label>
-            <label>
-              <span>Коментар</span>
-              <textarea name="comment" rows="3" placeholder="Що хочете змінити? Зручний час?"></textarea>
-            </label>
-            <button class="btn btn--solid btn--lg" type="submit">Надіслати заявку</button>
+            </div>
+
+            <div class="field">
+              <label for="f-note">Бажаний результат</label>
+              <textarea id="f-note" name="note" rows="3" placeholder="Стан волосся, історія фарбування, зручний час"></textarea>
+            </div>
+
+            <button class="btn btn--solid btn--block" type="submit">Надіслати заявку</button>
+
             <p class="form__status" data-form-status role="status" aria-live="polite"></p>
+
+            <p class="form__alt">
+              Це демо-прототип — заявка не надсилається.
+              <a href="https://bookon.ua/s/lite/owned.lviv" target="_blank" rel="noopener noreferrer">Онлайн-запис</a>,
+              <a href="tel:+380971484596">097 148 45 96</a> або
+              <a href="https://www.instagram.com/owned.lviv" target="_blank" rel="noopener noreferrer">@owned.lviv</a>.
+            </p>
           </form>
         </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer__grid">
-      <div>
-        <p class="footer__word">OWNED</p>
-        <p>Експертиза волосся · Львів · Safe Town</p>
-      </div>
-      <div>
-        <p class="eyebrow">Навігація</p>
-        <a href="#results">Результати</a>
-        <a href="#services">Послуги</a>
-        <a href="#booking">Запис</a>
-      </div>
-      <div>
-        <p class="eyebrow">Прототип v3</p>
-        <p>Photo-first + motion pass. Заявка поки демо.</p>
-      </div>
     </div>
-    <p class="footer__legal mono">© OWNED · 2026</p>
-  </footer>
+  </section>
+</main>
 
-  <div class="dock" data-dock hidden>
-    <a class="btn btn--solid btn--dock" href="#booking">Записатися</a>
+<!-- ─────────────────────────  FOOTER  ───────────────────────── -->
+<footer class="foot surface--ink">
+  <div class="shell foot__in">
+    <div class="foot__brand">
+      <p class="foot__word">OWNED</p>
+      <p class="foot__claim">Простір, де головний пріоритет — ти</p>
+      <p class="foot__sub">Місце внутрішнього «так»</p>
+    </div>
+
+    <nav class="foot__nav" aria-label="Розділи сайту">
+      <p class="eyebrow">Розділи</p>
+      <a href="#results">Роботи</a>
+      <a href="#services">Послуги</a>
+      <a href="#masters">Майстри</a>
+      <a href="#space">Простір</a>
+      <a href="#reviews">Відгуки</a>
+      <a href="#booking">Записатися</a>
+    </nav>
+
+    <div class="foot__contacts">
+      <p class="eyebrow">Простір</p>
+      <p>вул. Кульпарківська, 96,<br />ЖК Safe Town, Львів</p>
+      <a class="mono" href="tel:+380971484596">097 148 45 96</a>
+      <a href="https://www.instagram.com/owned.lviv" target="_blank" rel="noopener noreferrer">@owned.lviv</a>
+      <a href="https://bookon.ua/s/lite/owned.lviv" target="_blank" rel="noopener noreferrer">Онлайн-запис</a>
+    </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <div class="shell foot__legal">
+    <p>© 2026 OWNED простір краси, Львів</p>
+    <p>Ціни орієнтовні та залежать від стану волосся, довжини й густоти</p>
+  </div>
+</footer>
+
+<nav class="dock-nav" aria-label="Швидкий запис">
+  <a class="dock" href="#booking" data-dock>Записатися</a>
+</nav>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>
